@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Fila de aprovação</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0F172A}a:hover{color:#B45309}
+.ni{display:flex;align-items:center;gap:12px;min-height:42px;padding:0 12px;border-radius:10px;text-decoration:none;color:#CBD5E1;font-size:14px;font-weight:500}
+.ni svg{fill:#94A3B8;flex-shrink:0}
+.ni:hover{background:#1E293B;color:#F8FAFC}
+.ni.on,.ni.on:hover{background:#F59E0B;color:#0F172A;font-weight:700}
+.ni.on svg{fill:#0F172A}
+.cnt{margin-left:auto;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:999px;background:#1E293B;color:#CBD5E1;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.cnt.am{background:#F59E0B;color:#0F172A}
+.ni.on .cnt{background:#0F172A;color:#F59E0B}
+.bd{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600}
+.tab{height:40px;padding:0 4px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#64748B;text-decoration:none;border-bottom:2px solid transparent}
+.tab.on{color:#0F172A;border-bottom-color:#F59E0B}
+.q{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:12px 14px;border-bottom:1px solid #F1F5F9;text-decoration:none}
+.q:hover{background:#F8FAFC}
+.dots{display:flex;gap:4px}.dots i{width:18px;height:6px;border-radius:3px;background:#10B981}.dots i.n{background:#E2E8F0}
+</style>
+
+</head>
+<body>
+<div style="min-height: 900px; display: flex; flex-wrap: wrap; background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A">
+<nav aria-label="Menu do admin" style="flex: 1 1 232px; background: #0F172A; padding: 20px 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px"><div style="width: 36px; height: 36px; border-radius: 10px; background: #F59E0B; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg></div><div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; color: #F8FAFC">[NOME DO APP]</div><div style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: #F59E0B">ADMIN</div></div></div>
+<a class="ni" href="W02-Dashboard.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3zm10 0h8v5h-8zM3 13h8v8H3zm10-3h8v11h-8z"></path></svg>Dashboard</a>
+<a class="ni" href="W03-Corridas.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h2v20H5zM8 3h11l-2.5 4L19 11H8z"></path></svg>Corridas<span class="cnt">27</span></a>
+<a class="ni on" href="W05-Guincheiros.html" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg>Guincheiros<span class="cnt am">7</span></a>
+<a class="ni" href="W08-Clientes.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5z"></path></svg>Clientes</a>
+<a class="ni" href="W09-B2B.html"><svg width="20" height="20" viewBox="0 0 24 24" fill-rule="evenodd" aria-hidden="true"><path d="M4 21V3h10v4h6v14h-6v-4h-4v4zm3-15v2h2V6zm4 0v2h2V6zM7 10v2h2v-2zm4 0v2h2v-2zm6 1v2h2v-2zm0 4v2h2v-2z"></path></svg>Contas B2B</a>
+<a class="ni" href="W10-Financeiro.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h3V10H4zm6.5 0h3V4h-3zM17 20h3v-7h-3z"></path></svg>Financeiro</a>
+<a class="ni" href="W11-Ecossistema.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"></path></svg>Ecossistema</a>
+<a class="ni" href="W12-Precos.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10v2H4zm14 0h2v2h-2zM4 16h4v2H4zm8 0h8v2h-8zM14 4h2v6h-2zM8 14h2v6H8z"></path></svg>Preços</a>
+<div style="flex: 1; min-height: 24px"></div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 8px 0; border-top: 1px solid #1E293B"><div style="width: 36px; height: 36px; border-radius: 50%; background: #334155; color: #F8FAFC; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">CR</div><div><div style="font-size: 14px; font-weight: 600; color: #F8FAFC">Camila Rocha</div><div style="font-size: 12px; color: #94A3B8">Operações</div></div></div>
+</nav>
+
+<main style="flex: 999 1 640px; min-width: 0; padding: 22px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+<header style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+<div style="flex: 1; min-width: 220px"><h1 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em">Guincheiros</h1><div style="font-size: 14px; color: #64748B">Prazo de análise: 48 h úteis</div></div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap">
+<div style="padding: 8px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E2E8F0"><div style="font-size: 12px; color: #64748B">Tempo médio</div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px">19 h</div></div>
+<div style="padding: 8px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E2E8F0"><div style="font-size: 12px; color: #64748B">Aprovados na semana</div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px; color: #047857">14</div></div>
+<div style="padding: 8px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E2E8F0"><div style="font-size: 12px; color: #64748B">Reprovados</div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px; color: #B91C1C">3</div></div>
+</div>
+</header>
+
+<div style="display: flex; gap: 24px; border-bottom: 1px solid #E2E8F0; flex-wrap: wrap" role="tablist">
+<a class="tab" href="W05-Guincheiros.html" role="tab" aria-selected="false">Todos <span class="bd" style="background: #F1F5F9; color: #334155; height: 20px; padding: 0 8px">412</span></a>
+<a class="tab" href="#" role="tab" aria-selected="false">Online <span class="bd" style="background: #F1F5F9; color: #334155; height: 20px; padding: 0 8px">186</span></a>
+<a class="tab on" href="W06-Fila.html" role="tab" aria-selected="true">Fila de aprovação <span class="bd" style="background: #F59E0B; color: #0F172A; height: 20px; padding: 0 8px">7</span></a>
+<a class="tab" href="#" role="tab" aria-selected="false">Bloqueados <span class="bd" style="background: #F1F5F9; color: #334155; height: 20px; padding: 0 8px">3</span></a>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<div style="flex: 1 1 420px; min-width: 0; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; overflow: hidden">
+<div style="padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E2E8F0; font-size: 13px; color: #64748B"><span>Mais antigos primeiro</span><span>Docs</span></div>
+<a class="q" href="W07-Analise.html" style="background: #FFFBEB; box-shadow: inset 3px 0 0 #F59E0B"><span style="width: 40px; height: 40px; border-radius: 50%; background: #0F172A; color: #F59E0B; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">EL</span><span><span style="display: block; font-size: 14px; font-weight: 700">Edson Ferreira Lima</span><span style="display: block; font-size: 12px; color: #64748B">Plataforma · Guarulhos · há 6 h</span></span><span class="dots" aria-label="4 de 4 documentos"><i></i><i></i><i></i><i></i></span></a>
+<a class="q" href="#"><span style="width: 40px; height: 40px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">JM</span><span><span style="display: block; font-size: 14px; font-weight: 700">Joel Moreira <span class="bd" style="background: #FEE2E2; color: #991B1B; height: 20px; padding: 0 8px; font-size: 11px">prazo em 4 h</span></span><span style="display: block; font-size: 12px; color: #64748B">Munck 6 t · Santana de Parnaíba · há 44 h</span></span><span class="dots" aria-label="4 de 4 documentos"><i></i><i></i><i></i><i></i></span></a>
+<a class="q" href="#"><span style="width: 40px; height: 40px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">RD</span><span><span style="display: block; font-size: 14px; font-weight: 700">Rafaela Duarte</span><span style="display: block; font-size: 12px; color: #64748B">Asa delta · Mauá · há 9 h</span></span><span class="dots" aria-label="4 de 4 documentos"><i></i><i></i><i></i><i></i></span></a>
+<a class="q" href="#"><span style="width: 40px; height: 40px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">HT</span><span><span style="display: block; font-size: 14px; font-weight: 700">Henrique Takeda</span><span style="display: block; font-size: 12px; color: #64748B">Plataforma · Carapicuíba · antecedentes pendentes</span></span><span class="dots" aria-label="4 de 4 documentos"><i></i><i></i><i></i><i></i></span></a>
+<a class="q" href="#"><span style="width: 40px; height: 40px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">CB</span><span><span style="display: block; font-size: 14px; font-weight: 700">Cícero Batista</span><span style="display: block; font-size: 12px; color: #64748B">Plataforma · Itaquaquecetuba · falta sindicato</span></span><span class="dots" aria-label="3 de 4 documentos"><i></i><i></i><i></i><i class="n"></i></span></a>
+<a class="q" href="#"><span style="width: 40px; height: 40px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">VS</span><span><span style="display: block; font-size: 14px; font-weight: 700">Valdir Santos</span><span style="display: block; font-size: 12px; color: #64748B">Plataforma · Diadema · há 1 dia</span></span><span class="dots" aria-label="2 de 4 documentos"><i></i><i></i><i class="n"></i><i class="n"></i></span></a>
+<a class="q" href="#" style="border-bottom: 0"><span style="width: 40px; height: 40px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">LB</span><span><span style="display: block; font-size: 14px; font-weight: 700">Luiz Fernando Brito</span><span style="display: block; font-size: 12px; color: #64748B">Asa delta · Taboão da Serra · há 2 dias</span></span><span class="dots" aria-label="1 de 4 documentos"><i></i><i class="n"></i><i class="n"></i><i class="n"></i></span></a>
+</div>
+
+<div style="flex: 1.3 1 420px; min-width: 0; padding: 20px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; gap: 14px; align-items: center"><div style="width: 56px; height: 56px; border-radius: 50%; background: #0F172A; color: #F59E0B; display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px">EL</div><div style="flex: 1"><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px">Edson Ferreira Lima</div><div style="font-size: 13px; color: #64748B">Guinchos Lima ME · CNPJ 38.104.552/0001-71 · (11) 98320-4417</div></div></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px">
+<div style="padding: 12px; border-radius: 12px; background: #F8FAFC"><div style="font-size: 12px; color: #64748B">Caminhão</div><div style="font-size: 14px; font-weight: 700">Ford Cargo 816 · 2020</div><div style="font-size: 12px; color: #64748B">EFL3G72 · Plataforma 3,5 t</div></div>
+<div style="padding: 12px; border-radius: 12px; background: #F8FAFC"><div style="font-size: 12px; color: #64748B">Área de atuação</div><div style="font-size: 14px; font-weight: 700">Guarulhos e Zona Leste</div><div style="font-size: 12px; color: #64748B">raio de 20 km</div></div>
+<div style="padding: 12px; border-radius: 12px; background: #F8FAFC"><div style="font-size: 12px; color: #64748B">Pix</div><div style="font-size: 14px; font-weight: 700">Chave CNPJ</div><div style="font-size: 12px; color: #047857; font-weight: 600">Titular confere</div></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #64748B">Verificações automáticas</div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #F1F5F9"><span>CPF regular na Receita</span><span class="bd" style="background: #D1FAE5; color: #065F46">OK</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #F1F5F9"><span>CNH cat. D · válida até 04/2029</span><span class="bd" style="background: #D1FAE5; color: #065F46">OK</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #F1F5F9"><span>CRLV · placa e CNPJ conferem</span><span class="bd" style="background: #D1FAE5; color: #065F46">OK</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; padding: 8px 0; border-bottom: 1px solid #F1F5F9"><span>Antecedentes criminais</span><span class="bd" style="background: #D1FAE5; color: #065F46">Nada consta</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; padding: 8px 0"><span>Vínculo sindical</span><span class="bd" style="background: #FEF3C7; color: #92400E">Revisão manual</span></div>
+</div>
+<a href="W07-Analise.html" style="height: 48px; border-radius: 12px; background: #F59E0B; color: #0F172A; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; text-decoration: none">Analisar documentos</a>
+</div>
+</div>
+</main>
+</div>
+<a href="../index.html" style="position:fixed;right:16px;bottom:16px;z-index:99;padding:10px 14px;border-radius:10px;background:#0F172A;color:#F59E0B;font:600 13px Inter,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Índice</a>
+</body>
+</html>

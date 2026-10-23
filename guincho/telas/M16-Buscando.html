@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buscando guincheiro</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0F172A}a:hover{color:#0F172A}
+@keyframes radar{0%{transform:scale(.15);opacity:.7}100%{transform:scale(1);opacity:0}}
+@keyframes sweep{to{transform:rotate(360deg)}}
+@keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(245,158,11,.6)}100%{box-shadow:0 0 0 8px rgba(245,158,11,0)}}
+.ring{transform-origin:195px 330px;transform-box:view-box;animation:radar 2.4s ease-out infinite}
+.d2{animation-delay:.8s}.d3{animation-delay:1.6s}
+.sweep{transform-origin:195px 330px;transform-box:view-box;animation:sweep 3s linear infinite}
+.bar{animation:slide 1.4s ease-in-out infinite}
+.pulse{animation:pulse 1.4s ease-out infinite}
+html{background:#CBD5E1}body{display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:24px 0;box-sizing:border-box}body>div{flex-shrink:0;box-shadow:0 10px 40px rgba(15,23,42,.25)}</style>
+
+</head>
+<body>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #0B1324; font-family: 'Inter', sans-serif; color: #0F172A">
+<svg viewBox="0 0 390 844" style="position: absolute; inset: 0; width: 390px; height: 844px" aria-hidden="true">
+<defs><radialGradient id="sw" cx="0" cy="0" r="1"><stop offset="0" stop-color="#F59E0B" stop-opacity=".35"></stop><stop offset="1" stop-color="#F59E0B" stop-opacity="0"></stop></radialGradient></defs>
+<rect width="390" height="844" fill="#0B1324"></rect>
+<rect x="20" y="120" width="100" height="80" rx="8" fill="#0F2A24"></rect>
+<g stroke="#18243A" stroke-width="9" fill="none"><path d="M0 100H390"></path><path d="M0 240H390"></path><path d="M0 430H390"></path><path d="M90 0V844"></path><path d="M300 0V844"></path></g>
+<path d="M-30 600 C 80 520, 150 420, 195 330 S 300 120, 420 40" stroke="#22324D" stroke-width="30" fill="none"></path>
+<circle class="ring" cx="195" cy="330" r="170" fill="#F59E0B" fill-opacity=".10" stroke="#F59E0B" stroke-opacity=".6" stroke-width="2"></circle>
+<circle class="ring d2" cx="195" cy="330" r="170" fill="#F59E0B" fill-opacity=".10" stroke="#F59E0B" stroke-opacity=".6" stroke-width="2"></circle>
+<circle class="ring d3" cx="195" cy="330" r="170" fill="#F59E0B" fill-opacity=".10" stroke="#F59E0B" stroke-opacity=".6" stroke-width="2"></circle>
+<g class="sweep"><path d="M195 330 L195 160 A170 170 0 0 1 315 210 Z" fill="#F59E0B" fill-opacity=".14"></path></g>
+<circle cx="195" cy="330" r="170" fill="none" stroke="#334155" stroke-dasharray="3 8"></circle>
+<circle cx="195" cy="330" r="100" fill="none" stroke="#334155" stroke-dasharray="3 8"></circle>
+<g transform="translate(80 230)"><circle r="14" fill="#334155" stroke="#F59E0B" stroke-width="2"></circle><g transform="translate(-7.8 -7.8) scale(.65)" fill="#F59E0B"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></g></g>
+<g transform="translate(300 270)"><circle r="14" fill="#334155" stroke="#F59E0B" stroke-width="2"></circle><g transform="translate(-7.8 -7.8) scale(.65)" fill="#F59E0B"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></g></g>
+<g transform="translate(140 440)"><circle r="14" fill="#334155" stroke="#F59E0B" stroke-width="2"></circle><g transform="translate(-7.8 -7.8) scale(.65)" fill="#F59E0B"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></g></g>
+<g transform="translate(350 120)" opacity=".7"><circle r="12" fill="#334155"></circle><g transform="translate(-6.6 -6.6) scale(.55)" fill="#94A3B8"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></g></g>
+<circle cx="195" cy="330" r="17" fill="#F59E0B" stroke="#FFFFFF" stroke-width="3.5"></circle>
+<g transform="translate(186.6 321.6) scale(.7)" fill="#0F172A"><path d="M5 11l1.6-4.4A2 2 0 0 1 8.5 5.3h7a2 2 0 0 1 1.9 1.3L19 11h1a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-1v1.5a1.5 1.5 0 0 1-3 0V18H8v1.5a1.5 1.5 0 0 1-3 0V18H4a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z"></path></g>
+</svg>
+<a href="M18-ACaminho.html" aria-label="Simular: guincheiro aceitou" style="position: absolute; left: 0; right: 0; top: 0; height: 520px"></a>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 16px 42px; border-radius: 24px 24px 0 0; background: #FFFFFF; box-shadow: 0 -8px 32px rgba(2,6,23,.3); display: flex; flex-direction: column; gap: 14px">
+<div style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #CBD5E1"></div>
+<div style="display: flex; align-items: center; justify-content: space-between">
+<span style="height: 32px; padding: 0 12px; border-radius: 999px; background: #F1F5F9; color: #334155; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600"><span class="pulse" style="width: 8px; height: 8px; border-radius: 50%; background: #F59E0B"></span>Buscando</span>
+<a href="M17-SemGuincheiro.html" style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 22px; font-variant-numeric: tabular-nums; text-decoration: none" aria-label="Tempo de busca: 18 segundos">0:18</a>
+</div>
+<div>
+<h1 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 24px; line-height: 30px; letter-spacing: -0.02em">Chamando o guincho mais perto</h1>
+<p style="margin: 4px 0 0; font-size: 15px; line-height: 22px; color: #64748B">3 guincheiros a até 6 km estão vendo seu pedido. Costuma levar menos de 1 minuto.</p>
+</div>
+<div style="height: 6px; border-radius: 3px; background: #E2E8F0; overflow: hidden"><div class="bar" style="width: 40%; height: 6px; border-radius: 3px; background: #F59E0B"></div></div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: #F8FAFC; border: 1px solid #E2E8F0">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg>
+<div style="flex: 1; font-size: 14px"><strong>Reboque</strong> · até Auto Center Vila Yara</div>
+<div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px">R$ 312,38</div>
+</div>
+<a href="M10-Home.html" style="height: 52px; border-radius: 12px; border: 1.5px solid #0F172A; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; text-decoration: none">Cancelar pedido · sem custo</a>
+<div style="position: absolute; left: 0; right: 0; bottom: 8px; display: flex; justify-content: center"><div style="width: 134px; height: 5px; border-radius: 3px; background: #0F172A"></div></div>
+</div>
+</div>
+<a href="../index.html" style="position:fixed;right:16px;bottom:16px;z-index:99;padding:10px 14px;border-radius:10px;background:#0F172A;color:#F59E0B;font:600 13px Inter,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Índice</a>
+<script data-viewer>(function(){if(window.parent===window)return;var s=document.createElement('style');s.textContent='html,body{background:transparent!important}body{padding:0!important;min-height:0!important;display:block!important}body>div{box-shadow:none!important;margin:0 auto}a[href="../index.html"]{display:none!important}';document.head.appendChild(s);document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(a&&/index\.html$/.test(a.getAttribute('href')||'')){e.preventDefault();parent.postMessage({t:'home'},'*')}});parent.postMessage({t:'nav',f:location.pathname.split('/').pop()},'*')})()</script>
+</body>
+</html>

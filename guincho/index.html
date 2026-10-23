@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Protótipo do App · Guincho</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap">
+<style>
+:root{--bg:#F1F5F9;--panel:#fff;--ink:#0F172A;--mute:#64748B;--line:#E2E8F0;--amber:#F59E0B;--navy:#0F172A}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:Inter,sans-serif;color:var(--ink);background:var(--bg);display:flex;flex-direction:column;overflow:hidden}
+header{background:var(--navy);color:#F8FAFC;display:flex;align-items:center;gap:20px;padding:12px 24px;flex-shrink:0}
+.logo{display:flex;align-items:center;gap:10px;font-family:Outfit,sans-serif;font-weight:700;font-size:18px}
+.logo i{width:34px;height:34px;border-radius:10px;background:var(--amber);display:grid;place-items:center}
+.logo small{display:block;font:500 11px Inter,sans-serif;color:#94A3B8}
+.tabs{margin-left:auto;display:flex;background:#1E293B;border-radius:12px;padding:4px;gap:4px}
+.tab{border:0;background:none;color:#CBD5E1;font:600 14px Inter,sans-serif;padding:9px 18px;border-radius:9px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.tab.on{background:var(--amber);color:var(--navy)}
+.tab svg{width:18px;height:18px;fill:currentColor}
+.app{flex:1;display:flex;min-height:0}
+aside{width:300px;background:var(--panel);border-right:1px solid var(--line);overflow-y:auto;padding:8px 14px 28px;flex-shrink:0}
+aside h2{font:700 11px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:20px 6px 8px}
+.step{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;text-align:left;font:500 14px Inter,sans-serif;color:var(--ink);padding:8px 8px;border-radius:10px;cursor:pointer}
+.step:hover{background:#F8FAFC}
+.step b{flex:0 0 26px;height:26px;border-radius:8px;background:var(--bg);color:var(--mute);font:700 11px Inter,sans-serif;display:grid;place-items:center}
+.step.on{background:#FEF3C7;font-weight:600}
+.step.on b{background:var(--amber);color:var(--navy)}
+main{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px;background:radial-gradient(circle at 50% 40%,#fff,var(--bg) 70%)}
+.stage{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}
+.phone{position:relative;border-radius:46px;background:#0B1220;padding:12px;box-shadow:0 30px 60px -20px rgba(15,23,42,.45),0 0 0 2px #1E293B;flex-shrink:0;transform-origin:center}
+.screen{width:390px;height:844px;border-radius:36px;overflow:hidden;background:#fff}
+.screen iframe{width:390px;height:844px;border:0;display:block;opacity:1;transition:opacity .15s}
+.screen iframe.ld{opacity:0}
+.bar{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.bar button{border:1px solid var(--line);background:#fff;color:var(--ink);width:44px;height:44px;border-radius:50%;cursor:pointer;display:grid;place-items:center;box-shadow:0 2px 6px rgba(15,23,42,.08)}
+.bar button:hover:not(:disabled){background:var(--amber);border-color:var(--amber)}
+.bar button:disabled{opacity:.35;cursor:default}
+.bar svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.cap{text-align:center;min-width:240px}
+.cap small{display:block;font:600 11px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+.cap strong{font:700 18px Outfit,sans-serif}
+.cap span{display:block;font-size:12px;color:var(--mute)}
+.hint{position:absolute;right:20px;bottom:14px;font-size:12px;color:var(--mute)}
+kbd{border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;background:#fff;padding:1px 6px;font:600 11px Inter,sans-serif}
+.menu{display:none}
+@media(max-width:860px){
+  header{padding:10px 14px;flex-wrap:wrap;gap:10px}
+  .tabs{margin-left:0;width:100%}.tab{flex:1;justify-content:center}
+  .logo small{display:none}
+  aside{position:fixed;inset:0 0 0 auto;width:min(320px,86vw);z-index:20;transform:translateX(100%);transition:transform .2s;box-shadow:-10px 0 30px rgba(0,0,0,.2)}
+  body.open aside{transform:none}
+  .menu{display:grid}
+  .hint{display:none}
+  .bar{gap:10px}
+  .cap{min-width:0;flex:1}
+}
+.scrim{display:none}
+@media(max-width:860px){body.open .scrim{display:block;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:10}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="#0F172A"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"/><circle cx="6" cy="17" r="2.5"/><circle cx="17.5" cy="17" r="2.5"/></svg></i><div>Protótipo do App<small>Navegue pelas telas como se fosse o celular</small></div></div>
+  <div class="tabs" role="tablist">
+    <button class="tab" data-app="M"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z"/></svg>Tela do usuário</button>
+    <button class="tab" data-app="G"><svg viewBox="0 0 24 24"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"/><circle cx="6" cy="17" r="2.5"/><circle cx="17.5" cy="17" r="2.5"/></svg>Tela do guincheiro</button>
+  </div>
+</header>
+
+<div class="app">
+  <aside id="side"></aside>
+  <div class="scrim" id="scrim"></div>
+  <main>
+    <div class="stage" id="stage"><div class="phone" id="phone"><div class="screen"><iframe id="fr" title="Tela do app"></iframe></div></div></div>
+    <div class="bar">
+      <button id="prev" aria-label="Tela anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="cap"><small id="capFlow"></small><strong id="capName"></strong><span id="capNum"></span></div>
+      <button id="menu" class="menu" aria-label="Lista de telas"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <button id="next" aria-label="Próxima tela"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="hint">Use <kbd>←</kbd> <kbd>→</kbd> para trocar de tela · clique nos botões do app para navegar</div>
+  </main>
+</div>
+
+<script>
+var FLOWS={
+M:[
+["Primeiros passos",[["M01-Splash","Abertura"],["M02-Onboarding1","Socorro em 3 toques"],["M03-Onboarding2","Preço fechado"],["M04-Onboarding3","Acompanhe ao vivo"]]],
+["Cadastro",[["M05-Login","Login por telefone"],["M06-Codigo","Código SMS"],["M07-Cadastro","Cadastro rápido"],["M08-Veiculo","Cadastro do veículo"],["M09-Localizacao","Permissão de localização"]]],
+["Pedir socorro",[["M10-Home","Home"],["M11-Problema","O que aconteceu?"],["M12-Retirada","Local de retirada"],["M13-Destino","Para onde levar?"],["M14-Detalhes","Detalhes opcionais"],["M15-Resumo","Resumo e preço fechado"],["M16-Buscando","Buscando guincheiro"],["M17-SemGuincheiro","Nenhum guincheiro disponível"]]],
+["Acompanhar o atendimento",[["M18-ACaminho","Guincheiro a caminho"],["M19-Chat","Chat com o guincheiro"],["M20-Chegou","Guincheiro chegou"],["M21-Transporte","Em transporte"],["M22-Entrega","Chegada ao destino"],["M27-Cancelamento","Cancelamento"]]],
+["Pagamento e avaliação",[["M23-Pagamento","Resumo do pagamento"],["M24-Pix","Pagar com Pix"],["M25-Aprovado","Pagamento aprovado"],["M26-Avaliacao","Avaliação"]]],
+["Proteção e loja",[["M28-Protecao","Oferta de proteção"],["M29-Planos","Comparativo de planos"],["M30-Loja","Loja de peças"],["M31-Kit","Detalhe do kit"],["M32-Checkout","Carrinho e checkout"]]],
+["Minha conta",[["M33-Historico","Histórico de socorros"],["M34-Recibo","Recibo do socorro"],["M35-Veiculos","Meus veículos"],["M36-Pagamentos","Formas de pagamento"],["M37-Perfil","Perfil"],["M38-Ajuda","Central de ajuda"]]],
+["Situações especiais",[["M39-SemInternet","Sem internet"],["M40-Carregando","Carregando"],["M41-Erro","Erro genérico"]]]
+],
+G:[
+["Cadastro do guincheiro",[["G01-BoasVindas","Boas-vindas"],["G02-Login","Login por telefone"],["G03-Codigo","Código SMS"],["G04-Dados","Dados pessoais"],["G05-Documentos","Envio de documentos"],["G06-Caminhao","Dados do caminhão"],["G07-Banco","Dados bancários"],["G08-Analise","Cadastro em análise"],["G09-Aprovado","Cadastro aprovado"]]],
+["Receber corridas",[["G10-Offline","Home offline"],["G11-Online","Home online"],["G12-Solicitacao","Nova solicitação"]]],
+["Atender o cliente",[["G13-IndoCliente","Indo até o cliente"],["G14-Cheguei","Cheguei · código"],["G15-Checklist","Checklist do veículo"],["G16-Transporte","Em transporte"],["G17-Entrega","Entrega"],["G18-Finalizada","Corrida finalizada"]]],
+["Ganhos",[["G19-Ganhos","Ganhos"],["G20-Extrato","Extrato"],["G21-Saque","Saque via Pix"]]],
+["Minha conta",[["G22-Historico","Histórico de corridas"],["G23-Avaliacoes","Minhas avaliações"],["G24-Perfil","Perfil e documentos"],["G25-Notificacoes","Notificações"],["G26-Suporte","Suporte e emergência"]]]
+]};
+
+var ALL={M:[],G:[]};
+for(var k in FLOWS)FLOWS[k].forEach(function(g){g[1].forEach(function(s){ALL[k].push({id:s[0],name:s[1],flow:g[0]})})});
+
+var app='M',idx=0;
+var $=function(i){return document.getElementById(i)};
+var fr=$('fr'),side=$('side');
+
+function renderSide(){
+  var h='',n=0;
+  FLOWS[app].forEach(function(g){
+    h+='<h2>'+g[0]+'</h2>';
+    g[1].forEach(function(s){n++;h+='<button class="step" data-i="'+(n-1)+'"><b>'+n+'</b>'+s[1]+'</button>'});
+  });
+  side.innerHTML=h;
+}
+function show(i,noload){
+  var list=ALL[app];idx=Math.max(0,Math.min(list.length-1,i));
+  var s=list[idx];
+  if(!noload&&fr.getAttribute('data-id')!==s.id){fr.classList.add('ld');fr.setAttribute('data-id',s.id);fr.src='telas/'+s.id+'.html'}
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.dataset.app===app)});
+  document.querySelectorAll('.step').forEach(function(b,j){b.classList.toggle('on',j===idx)});
+  var on=side.querySelector('.step.on');if(on)on.scrollIntoView({block:'nearest'});
+  $('capFlow').textContent=s.flow;$('capName').textContent=s.name;$('capNum').textContent='Tela '+(idx+1)+' de '+list.length;
+  $('prev').disabled=idx===0;$('next').disabled=idx===list.length-1;
+  try{history.replaceState(null,'','#'+s.id)}catch(e){}
+  document.body.classList.remove('open');
+}
+function setApp(a,i){app=a;renderSide();fr.removeAttribute('data-id');show(i||0)}
+
+fr.addEventListener('load',function(){fr.classList.remove('ld')});
+side.addEventListener('click',function(e){var b=e.target.closest('.step');if(b)show(+b.dataset.i)});
+document.querySelectorAll('.tab').forEach(function(t){t.onclick=function(){if(t.dataset.app!==app)setApp(t.dataset.app,0)}});
+$('prev').onclick=function(){show(idx-1)};$('next').onclick=function(){show(idx+1)};
+$('menu').onclick=function(){document.body.classList.add('open')};$('scrim').onclick=function(){document.body.classList.remove('open')};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1)});
+
+// navegação feita dentro do app (cliques nos botões das telas)
+window.addEventListener('message',function(e){
+  var d=e.data;if(!d||d.t!=='nav')return;
+  var id=String(d.f).replace(/\.html$/,'');
+  var a=id.charAt(0);if(!ALL[a])return;
+  var j=ALL[a].findIndex(function(s){return s.id===id});if(j<0)return;
+  fr.setAttribute('data-id',id);fr.classList.remove('ld');
+  if(a!==app){app=a;renderSide()}
+  show(j,true);
+});
+
+// escala o celular para caber na tela
+function fit(){
+  var st=$('stage'),p=$('phone');
+  var w=390+24,h=844+24;
+  var k=Math.min(1,(st.clientWidth-8)/w,(st.clientHeight-8)/h);
+  p.style.transform='scale('+k+')';
+  p.style.margin=(-(h*(1-k))/2)+'px '+(-(w*(1-k))/2)+'px';
+}
+window.addEventListener('resize',fit);
+
+var start=location.hash.slice(1),a0=start.charAt(0)==='G'?'G':'M';
+var i0=ALL[a0].findIndex(function(s){return s.id===start});
+renderSide();fit();setApp(a0,Math.max(0,i0));fit();
+</script>
+</body>
+</html>

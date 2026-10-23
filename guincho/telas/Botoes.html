@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Botões</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#B45309}a:hover{color:#92400E}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{animation:spin .8s linear infinite}
+html{background:#CBD5E1}body{display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:24px 0;box-sizing:border-box}body>div{flex-shrink:0;box-shadow:0 10px 40px rgba(15,23,42,.25)}</style>
+
+</head>
+<body>
+<div style="width: 1440px; height: 1300px; box-sizing: border-box; padding: 80px; background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; display: flex; flex-direction: column; gap: 48px">
+
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 900px">
+<div style="font-weight: 600; font-size: 13px; line-height: 16px; letter-spacing: 0.16em; text-transform: uppercase; color: #B45309">03 · Componentes</div>
+<h1 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 56px; line-height: 60px; letter-spacing: -0.02em">Botões</h1>
+<p style="margin: 0; font-size: 18px; line-height: 28px; color: #64748B">Um único botão primário por tela. Altura 56 px e largura total no app do motorista; 64 a 72 px no app do guincheiro. Raio 12 px.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: 220px repeat(4, minmax(0, 1fr)); column-gap: 24px; row-gap: 20px; align-items: center">
+<div></div>
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #64748B">Padrão</div>
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #64748B">Pressionado</div>
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #64748B">Desabilitado</div>
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #64748B">Carregando</div>
+
+<div><div style="font-size: 15px; font-weight: 600">Primário</div><div style="font-size: 12px; color: #64748B">A ação principal da tela</div></div>
+<button type="button" style="height: 56px; border: 0; border-radius: 12px; background: #F59E0B; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; box-shadow: 0 1px 2px rgba(15,23,42,.12)">Pedir guincho</button>
+<button type="button" style="height: 56px; border: 0; border-radius: 12px; background: #D97706; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; transform: scale(0.98); box-shadow: inset 0 2px 4px rgba(15,23,42,.18)">Pedir guincho</button>
+<button type="button" disabled="" style="height: 56px; border: 0; border-radius: 12px; background: #E2E8F0; color: #94A3B8; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px">Pedir guincho</button>
+<button type="button" aria-busy="true" style="height: 56px; border: 0; border-radius: 12px; background: #F59E0B; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px"><span class="spin" style="width: 20px; height: 20px; box-sizing: border-box; border-radius: 50%; border: 2.5px solid rgba(15,23,42,.25); border-top-color: #0F172A"></span>Buscando guincho…</button>
+
+<div><div style="font-size: 15px; font-weight: 600">Secundário</div><div style="font-size: 12px; color: #64748B">Ação de apoio forte</div></div>
+<button type="button" style="height: 56px; border: 0; border-radius: 12px; background: #0F172A; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px">Ver detalhes</button>
+<button type="button" style="height: 56px; border: 0; border-radius: 12px; background: #1E293B; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; transform: scale(0.98); box-shadow: inset 0 2px 4px rgba(0,0,0,.35)">Ver detalhes</button>
+<button type="button" disabled="" style="height: 56px; border: 0; border-radius: 12px; background: #E2E8F0; color: #94A3B8; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px">Ver detalhes</button>
+<button type="button" aria-busy="true" style="height: 56px; border: 0; border-radius: 12px; background: #0F172A; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px"><span class="spin" style="width: 20px; height: 20px; box-sizing: border-box; border-radius: 50%; border: 2.5px solid rgba(255,255,255,.25); border-top-color: #FFFFFF"></span>Carregando…</button>
+
+<div><div style="font-size: 15px; font-weight: 600">Outline</div><div style="font-size: 12px; color: #64748B">Alternativa ao lado do primário</div></div>
+<button type="button" style="height: 56px; border: 1.5px solid #0F172A; border-radius: 12px; background: transparent; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px">Alterar destino</button>
+<button type="button" style="height: 56px; border: 1.5px solid #0F172A; border-radius: 12px; background: #E2E8F0; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; transform: scale(0.98)">Alterar destino</button>
+<button type="button" disabled="" style="height: 56px; border: 1.5px solid #E2E8F0; border-radius: 12px; background: transparent; color: #94A3B8; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px">Alterar destino</button>
+<button type="button" aria-busy="true" style="height: 56px; border: 1.5px solid #0F172A; border-radius: 12px; background: transparent; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px"><span class="spin" style="width: 20px; height: 20px; box-sizing: border-box; border-radius: 50%; border: 2.5px solid rgba(15,23,42,.2); border-top-color: #0F172A"></span>Salvando…</button>
+
+<div><div style="font-size: 15px; font-weight: 600">Texto</div><div style="font-size: 12px; color: #64748B">Saída discreta, “agora não”</div></div>
+<button type="button" style="height: 56px; border: 0; border-radius: 12px; background: transparent; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; text-decoration: underline; text-underline-offset: 4px">Agora não</button>
+<button type="button" style="height: 56px; border: 0; border-radius: 12px; background: #E2E8F0; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; text-decoration: underline; text-underline-offset: 4px">Agora não</button>
+<button type="button" disabled="" style="height: 56px; border: 0; border-radius: 12px; background: transparent; color: #94A3B8; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; text-decoration: underline; text-underline-offset: 4px">Agora não</button>
+<button type="button" aria-busy="true" style="height: 56px; border: 0; border-radius: 12px; background: transparent; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px"><span class="spin" style="width: 18px; height: 18px; box-sizing: border-box; border-radius: 50%; border: 2.5px solid rgba(15,23,42,.2); border-top-color: #0F172A"></span>Aguarde…</button>
+
+<div><div style="font-size: 15px; font-weight: 600">Destrutivo</div><div style="font-size: 12px; color: #64748B">Cancelar, excluir; pede confirmação</div></div>
+<button type="button" style="height: 56px; border: 0; border-radius: 12px; background: #DC2626; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px">Cancelar pedido</button>
+<button type="button" style="height: 56px; border: 0; border-radius: 12px; background: #B91C1C; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; transform: scale(0.98); box-shadow: inset 0 2px 4px rgba(0,0,0,.25)">Cancelar pedido</button>
+<button type="button" disabled="" style="height: 56px; border: 0; border-radius: 12px; background: #E2E8F0; color: #94A3B8; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px">Cancelar pedido</button>
+<button type="button" aria-busy="true" style="height: 56px; border: 0; border-radius: 12px; background: #DC2626; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px"><span class="spin" style="width: 20px; height: 20px; box-sizing: border-box; border-radius: 50%; border: 2.5px solid rgba(255,255,255,.3); border-top-color: #FFFFFF"></span>Cancelando…</button>
+
+<div><div style="font-size: 15px; font-weight: 600">SOS</div><div style="font-size: 12px; color: #64748B">Emergência com risco à pessoa</div></div>
+<button type="button" style="height: 56px; border: 0; border-radius: 12px; background: #EF4444; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.02em; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 0 0 4px rgba(239,68,68,.18)"><svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"></path></svg>SOS emergência</button>
+<button type="button" style="height: 56px; border: 0; border-radius: 12px; background: #DC2626; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.02em; display: flex; align-items: center; justify-content: center; gap: 10px; transform: scale(0.98); box-shadow: inset 0 2px 4px rgba(0,0,0,.25)"><svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"></path></svg>SOS emergência</button>
+<button type="button" disabled="" style="height: 56px; border: 0; border-radius: 12px; background: #E2E8F0; color: #94A3B8; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.02em; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="#94A3B8" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"></path></svg>SOS emergência</button>
+<button type="button" aria-busy="true" style="height: 56px; border: 0; border-radius: 12px; background: #EF4444; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center; gap: 10px"><span class="spin" style="width: 20px; height: 20px; box-sizing: border-box; border-radius: 50%; border: 2.5px solid rgba(255,255,255,.3); border-top-color: #FFFFFF"></span>Ligando para 193…</button>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px">Tamanhos e botão de ícone</h2>
+<div style="display: flex; align-items: center; gap: 16px">
+<button type="button" style="height: 56px; padding: 0 28px; border: 0; border-radius: 12px; background: #F59E0B; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px">Grande · 56</button>
+<button type="button" style="height: 48px; padding: 0 24px; border: 0; border-radius: 12px; background: #F59E0B; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px">Médio · 48</button>
+<button type="button" style="height: 40px; padding: 0 18px; border: 0; border-radius: 10px; background: #F59E0B; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px">Pequeno · 40 (só web)</button>
+<div style="width: 1px; height: 40px; background: #E2E8F0; margin: 0 8px"></div>
+<button type="button" aria-label="Ligar para o guincheiro" style="width: 56px; height: 56px; border: 0; border-radius: 50%; background: #0F172A; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"></path></svg></button>
+<button type="button" aria-label="Centralizar no meu local" style="width: 48px; height: 48px; border: 1px solid #E2E8F0; border-radius: 50%; background: #FFFFFF; box-shadow: 0 8px 24px rgba(15,23,42,.10); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"></path></svg></button>
+<button type="button" aria-label="SOS emergência" style="width: 64px; height: 64px; border: 0; border-radius: 50%; background: #EF4444; color: #FFFFFF; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: 0.04em; box-shadow: 0 0 0 6px rgba(239,68,68,.18), 0 8px 24px rgba(239,68,68,.35)">SOS</button>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 32px; border-radius: 24px; background: #0F172A; color: #F8FAFC">
+<div style="display: flex; align-items: baseline; gap: 16px"><h2 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px">App do Guincheiro · modo escuro</h2><span style="font-size: 14px; color: #94A3B8">Alvos de 72 px, legíveis com luva e com o caminhão em movimento. Ação crítica por deslize, nunca por toque acidental.</span></div>
+<div style="display: flex; gap: 16px; align-items: center">
+<button type="button" style="flex: 1.1; height: 72px; border: 0; border-radius: 12px; background: #F59E0B; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 19px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px">Aceitar corrida<span style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px">R$ 249,90</span></button>
+<div style="flex: 1.5; height: 72px; border-radius: 12px; background: #1E293B; border: 1px solid #334155; box-sizing: border-box; position: relative; display: flex; align-items: center; justify-content: center">
+<div style="position: absolute; left: 4px; top: 3px; width: 64px; height: 64px; border-radius: 10px; background: #34D399; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5 1.8 1.8L19.6 12 10.3 2.7z"></path></svg></div>
+<span style="font-size: 17px; font-weight: 600; color: #F8FAFC; margin-left: 56px">Deslize para iniciar o reboque</span>
+</div>
+<button type="button" style="flex: 0.8; height: 72px; border: 1.5px solid #475569; border-radius: 12px; background: transparent; color: #F8FAFC; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 18px">Recusar</button>
+<button type="button" aria-label="SOS emergência" style="width: 72px; height: 72px; flex-shrink: 0; border: 0; border-radius: 50%; background: #EF4444; color: #FFFFFF; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.04em">SOS</button>
+</div>
+</div>
+
+</div>
+<a href="../index.html" style="position:fixed;right:16px;bottom:16px;z-index:99;padding:10px 14px;border-radius:10px;background:#0F172A;color:#F59E0B;font:600 13px Inter,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Índice</a>
+</body>
+</html>

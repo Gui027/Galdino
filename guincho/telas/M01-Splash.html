@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Splash</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#F8FAFC}a:hover{color:#F8FAFC}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{animation:spin .9s linear infinite}
+html{background:#CBD5E1}body{display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:24px 0;box-sizing:border-box}body>div{flex-shrink:0;box-shadow:0 10px 40px rgba(15,23,42,.25)}</style>
+
+</head>
+<body>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #0F172A; font-family: 'Inter', sans-serif; color: #F8FAFC">
+<svg viewBox="0 0 390 844" style="position: absolute; inset: 0; width: 390px; height: 844px" aria-hidden="true">
+<path d="M-40 700 C 80 640, 160 560, 200 460 S 300 220, 440 140" stroke="#1E293B" stroke-width="44" fill="none"></path>
+<path d="M-40 700 C 80 640, 160 560, 200 460 S 300 220, 440 140" stroke="#F59E0B" stroke-opacity=".18" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round" fill="none"></path>
+</svg>
+<div style="position: absolute; left: 0; right: 0; top: 300px; display: flex; flex-direction: column; align-items: center; gap: 20px">
+<div style="width: 96px; height: 96px; border-radius: 28px; background: #F59E0B; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px rgba(245,158,11,.12)">
+<svg width="56" height="56" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg>
+</div>
+<div style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.02em">[NOME DO APP]</div>
+<div style="font-size: 16px; color: #94A3B8">Socorro automotivo na hora</div>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 72px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<span class="spin" style="width: 24px; height: 24px; box-sizing: border-box; border-radius: 50%; border: 3px solid rgba(248,250,252,.15); border-top-color: #F59E0B"></span>
+<div style="font-size: 13px; color: #94A3B8">Grande São Paulo · 24 horas</div>
+</div>
+<a href="M02-Onboarding1.html" aria-label="Continuar" style="position: absolute; inset: 0"></a>
+</div>
+<a href="../index.html" style="position:fixed;right:16px;bottom:16px;z-index:99;padding:10px 14px;border-radius:10px;background:#0F172A;color:#F59E0B;font:600 13px Inter,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Índice</a>
+<script data-viewer>(function(){if(window.parent===window)return;var s=document.createElement('style');s.textContent='html,body{background:transparent!important}body{padding:0!important;min-height:0!important;display:block!important}body>div{box-shadow:none!important;margin:0 auto}a[href="../index.html"]{display:none!important}';document.head.appendChild(s);document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(a&&/index\.html$/.test(a.getAttribute('href')||'')){e.preventDefault();parent.postMessage({t:'home'},'*')}});parent.postMessage({t:'nav',f:location.pathname.split('/').pop()},'*')})()</script>
+</body>
+</html>

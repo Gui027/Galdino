@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navegação</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#B45309}a:hover{color:#92400E}
+html{background:#CBD5E1}body{display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:24px 0;box-sizing:border-box}body>div{flex-shrink:0;box-shadow:0 10px 40px rgba(15,23,42,.25)}</style>
+
+</head>
+<body>
+<div style="width: 1440px; height: 1300px; box-sizing: border-box; padding: 80px; background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A; display: flex; flex-direction: column; gap: 48px">
+
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 900px">
+<div style="font-weight: 600; font-size: 13px; line-height: 16px; letter-spacing: 0.16em; text-transform: uppercase; color: #B45309">07 · Componentes</div>
+<h1 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 56px; line-height: 60px; letter-spacing: -0.02em">Navegação</h1>
+<p style="margin: 0; font-size: 18px; line-height: 28px; color: #64748B">Larguras de 390 px. Top bar começa abaixo da safe area de 47 px; tab bar soma 34 px de safe area inferior. Durante um resgate ativo, a tab bar some e o bottom sheet assume.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; align-items: start">
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0 0 2px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px">Top bar</h2>
+<div style="font-size: 13px; color: #64748B">Padrão · 56 px</div>
+<div style="width: 390px; height: 56px; box-sizing: border-box; padding: 0 8px; background: #FFFFFF; border-bottom: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: space-between; border-radius: 12px">
+<button type="button" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M15.5 4.5 8 12l7.5 7.5-1.8 1.8L4.4 12l9.3-9.3z"></path></svg></button>
+<div style="font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 18px">Pagamento</div>
+<button type="button" aria-label="Ajuda" style="width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" fill-rule="evenodd" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1 15h2v-2h-2zm1-11a3.5 3.5 0 0 0-3.5 3.5h2A1.5 1.5 0 1 1 12 11c-.6 0-1 .4-1 1v2h2v-1.2A3.5 3.5 0 0 0 12 6z"></path></svg></button>
+</div>
+
+<div style="font-size: 13px; color: #64748B; margin-top: 8px">Início · título grande</div>
+<div style="width: 390px; box-sizing: border-box; padding: 12px 16px 16px; background: #FFFFFF; border-radius: 12px; display: flex; align-items: center; gap: 12px">
+<div style="flex: 1"><div style="font-size: 14px; color: #64748B">Boa noite,</div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 28px; line-height: 32px; letter-spacing: -0.02em">Juliana</div></div>
+<button type="button" aria-label="Notificações" style="position: relative; width: 44px; height: 44px; border: 1px solid #E2E8F0; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M12 22a2.5 2.5 0 0 0 2.5-2.5h-5A2.5 2.5 0 0 0 12 22zm7-6V11a7 7 0 0 0-5.5-6.8V3a1.5 1.5 0 0 0-3 0v1.2A7 7 0 0 0 5 11v5l-2 2v1h18v-1z"></path></svg><span style="position: absolute; top: 9px; right: 10px; width: 9px; height: 9px; border-radius: 50%; background: #EF4444; border: 2px solid #FFFFFF"></span></button>
+<div style="width: 44px; height: 44px; border-radius: 50%; background: #0F172A; color: #F59E0B; display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px">JF</div>
+</div>
+
+<div style="font-size: 13px; color: #64748B; margin-top: 8px">Sobre o mapa · botões flutuantes</div>
+<div style="position: relative; width: 390px; height: 96px; border-radius: 12px; overflow: hidden; background: #0B1324">
+<svg viewBox="0 0 390 96" style="position: absolute; inset: 0; width: 390px; height: 96px" aria-hidden="true"><g stroke="#18243A" stroke-width="7" fill="none"><path d="M0 30H390"></path><path d="M0 80H390"></path><path d="M90 0V96"></path><path d="M260 0V96"></path></g><path d="M-10 90 C 120 70, 240 40, 400 10" stroke="#22324D" stroke-width="18" fill="none"></path></svg>
+<div style="position: absolute; left: 16px; right: 16px; top: 20px; display: flex; align-items: center; justify-content: space-between">
+<button type="button" aria-label="Voltar" style="width: 48px; height: 48px; border: 0; border-radius: 50%; background: #FFFFFF; box-shadow: 0 6px 20px rgba(2,6,23,.35); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M15.5 4.5 8 12l7.5 7.5-1.8 1.8L4.4 12l9.3-9.3z"></path></svg></button>
+<button type="button" style="height: 48px; padding: 0 18px; border: 0; border-radius: 999px; background: #FFFFFF; box-shadow: 0 6px 20px rgba(2,6,23,.35); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: #0F172A">Compartilhar trajeto</button>
+</div>
+</div>
+
+<div style="font-size: 13px; color: #64748B; margin-top: 8px">Guincheiro · escuro com disponibilidade</div>
+<div style="width: 390px; box-sizing: border-box; padding: 12px 16px; background: #0F172A; border-radius: 12px; display: flex; align-items: center; gap: 12px; color: #F8FAFC">
+<div role="switch" aria-checked="true" aria-label="Disponível para corridas" style="display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 6px 0 14px; border-radius: 999px; background: #064E3B">
+<span style="font-size: 15px; font-weight: 700; color: #6EE7B7">Online</span>
+<span style="width: 52px; height: 32px; border-radius: 999px; background: #34D399; position: relative"><span style="position: absolute; right: 3px; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: #FFFFFF"></span></span>
+</div>
+<div style="flex: 1; text-align: right"><div style="font-size: 13px; color: #94A3B8">Ganhos hoje</div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 22px; color: #34D399">R$ 749,70</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0 0 2px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px">Tab bar</h2>
+<div style="font-size: 13px; color: #64748B">Motorista · 49 px + 34 px de safe area</div>
+<nav aria-label="Navegação principal" style="width: 390px; height: 83px; box-sizing: border-box; background: #FFFFFF; border-top: 1px solid #E2E8F0; border-radius: 12px; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(15,23,42,.06)">
+<div style="height: 49px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding-top: 6px">
+<a href="#" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: #0F172A"><span style="width: 52px; height: 28px; border-radius: 999px; background: #F59E0B; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M12 3 2 11h3v10h5v-6h4v6h5V11h3z"></path></svg></span><span style="font-size: 11px; font-weight: 700">Início</span></a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: #64748B"><span style="width: 52px; height: 28px; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#64748B" fill-rule="evenodd" aria-hidden="true"><path d="M5 2h14v20l-3-2-2 2-2-2-2 2-2-2-3 2zm3 5v2h8V7zm0 4v2h8v-2zm0 4v2h5v-2z"></path></svg></span><span style="font-size: 11px; font-weight: 500">Pedidos</span></a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: #64748B"><span style="width: 52px; height: 28px; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#64748B" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"></path></svg></span><span style="font-size: 11px; font-weight: 500">Proteção</span></a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: #64748B"><span style="width: 52px; height: 28px; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#64748B" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5z"></path></svg></span><span style="font-size: 11px; font-weight: 500">Perfil</span></a>
+</div>
+<div style="height: 34px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; box-sizing: border-box"><div style="width: 134px; height: 5px; border-radius: 3px; background: #0F172A"></div></div>
+</nav>
+
+<div style="font-size: 13px; color: #64748B; margin-top: 8px">Guincheiro · escuro, ícones 24 px e rótulo 13 px</div>
+<nav aria-label="Navegação do guincheiro" style="width: 390px; height: 91px; box-sizing: border-box; background: #0F172A; border-top: 1px solid #334155; border-radius: 12px; display: flex; flex-direction: column">
+<div style="height: 57px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding-top: 8px">
+<a href="#" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #F59E0B"><svg width="24" height="24" viewBox="0 0 24 24" fill="#F59E0B" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg><span style="font-size: 13px; font-weight: 700">Corridas</span></a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #94A3B8"><svg width="24" height="24" viewBox="0 0 24 24" fill="#94A3B8" fill-rule="evenodd" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h13v3H5h15a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2zm14 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"></path></svg><span style="font-size: 13px; font-weight: 500">Ganhos</span></a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #94A3B8"><svg width="24" height="24" viewBox="0 0 24 24" fill="#94A3B8" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path></svg><span style="font-size: 13px; font-weight: 500">Mensagens</span></a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #94A3B8"><svg width="24" height="24" viewBox="0 0 24 24" fill="#94A3B8" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5z"></path></svg><span style="font-size: 13px; font-weight: 500">Perfil</span></a>
+</div>
+<div style="height: 34px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; box-sizing: border-box"><div style="width: 134px; height: 5px; border-radius: 3px; background: #F8FAFC"></div></div>
+</nav>
+
+<div style="margin-top: 16px; padding: 20px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 20px; color: #64748B">
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: #B45309">REGRAS</div>
+<div>Máximo de 4 itens. Item ativo: pílula âmbar com ícone marinho no claro, ícone e rótulo âmbar no escuro.</div>
+<div>Rótulo sempre visível, nunca só ícone.</div>
+<div>Badge vermelho de 9 px para pendências: pagamento, avaliação.</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0 0 2px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px">Bottom sheet</h2>
+<div style="font-size: 13px; color: #64748B">Raio 24 px · paradas em 25%, 50% e 90% da tela</div>
+<div style="position: relative; width: 390px; height: 760px; border-radius: 24px; overflow: hidden; background: #0B1324">
+<svg viewBox="0 0 390 420" preserveAspectRatio="xMidYMid slice" style="position: absolute; left: 0; top: 0; width: 390px; height: 420px" aria-hidden="true">
+<rect width="390" height="420" fill="#0B1324"></rect>
+<rect x="24" y="130" width="90" height="70" rx="6" fill="#0F2A24"></rect>
+<g stroke="#18243A" stroke-width="8" fill="none"><path d="M0 110H390"></path><path d="M0 220H390"></path><path d="M0 340H390"></path><path d="M130 0V420"></path><path d="M290 0V420"></path></g>
+<path d="M0 280 L390 250" stroke="#1B2943" stroke-width="12" fill="none"></path>
+<path d="M-20 400 C 80 360, 160 320, 210 230 S 320 110, 410 80" stroke="#22324D" stroke-width="24" fill="none"></path>
+<path d="M80 370 C 140 330, 180 300, 210 235 S 250 170, 290 160" stroke="#F59E0B" stroke-opacity=".25" stroke-width="14" fill="none" stroke-linecap="round"></path>
+<path d="M80 370 C 140 330, 180 300, 210 235 S 250 170, 290 160" stroke="#F59E0B" stroke-width="5" fill="none" stroke-linecap="round"></path>
+<circle cx="80" cy="370" r="17" fill="#0F172A" stroke="#F59E0B" stroke-width="2.5"></circle>
+<g transform="translate(70 360) scale(.84)" fill="#F59E0B"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></g>
+<circle cx="290" cy="160" r="26" fill="#F59E0B" fill-opacity=".2"></circle>
+<circle cx="290" cy="160" r="12" fill="#F59E0B" stroke="#FFFFFF" stroke-width="3.5"></circle>
+</svg>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 16px 0; border-radius: 24px 24px 0 0; background: #FFFFFF; box-shadow: 0 -8px 32px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 14px">
+<div style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #CBD5E1"></div>
+<div style="display: flex; align-items: center; justify-content: space-between">
+<span style="height: 32px; padding: 0 12px; border-radius: 999px; background: #DBEAFE; color: #1E40AF; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600"><svg width="14" height="14" viewBox="0 0 24 24" fill="#1E40AF" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg>A caminho</span>
+<span style="font-size: 13px; color: #64748B">Pedido #48213</span>
+</div>
+<div>
+<div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 26px; line-height: 32px; letter-spacing: -0.02em">Marcos chega em 8 min</div>
+<div style="font-size: 15px; color: #64748B; margin-top: 2px">Fique em local seguro, longe da pista.</div>
+</div>
+<div style="height: 6px; border-radius: 3px; background: #E2E8F0"><div style="width: 62%; height: 6px; border-radius: 3px; background: #F59E0B"></div></div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; border: 1px solid #E2E8F0">
+<div style="width: 48px; height: 48px; border-radius: 50%; background: #CBD5E1; border: 2.5px solid #F59E0B; box-sizing: border-box; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; flex-shrink: 0"><svg width="34" height="34" viewBox="0 0 24 24" fill="#64748B" role="img" aria-label="Foto de Marcos Andrade"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5z"></path></svg></div>
+<div style="flex: 1"><div style="font-size: 15px; font-weight: 600">Marcos Andrade · ★ 4,9</div><div style="font-size: 13px; color: #64748B">VW Delivery plataforma · branco</div></div>
+<div style="border-radius: 5px; border: 1.5px solid #0F172A; overflow: hidden"><div style="height: 5px; background: #1D4ED8"></div><div style="padding: 1px 6px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em">GHT7B31</div></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<button type="button" style="height: 64px; border: 0; border-radius: 12px; background: #0F172A; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px"><svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"></path></svg>Ligar</button>
+<button type="button" style="height: 64px; border: 1.5px solid #E2E8F0; border-radius: 12px; background: #FFFFFF; color: #0F172A; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px"><svg width="20" height="20" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path></svg>Mensagem</button>
+<button type="button" style="height: 64px; border: 0; border-radius: 12px; background: #FEE2E2; color: #991B1B; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px"><span style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 16px; line-height: 20px">SOS</span>Emergência</button>
+</div>
+<div style="height: 34px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; box-sizing: border-box"><div style="width: 134px; height: 5px; border-radius: 3px; background: #0F172A"></div></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+<a href="../index.html" style="position:fixed;right:16px;bottom:16px;z-index:99;padding:10px 14px;border-radius:10px;background:#0F172A;color:#F59E0B;font:600 13px Inter,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Índice</a>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Guincheiros</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0F172A}a:hover{color:#B45309}
+.ni{display:flex;align-items:center;gap:12px;min-height:42px;padding:0 12px;border-radius:10px;text-decoration:none;color:#CBD5E1;font-size:14px;font-weight:500}
+.ni svg{fill:#94A3B8;flex-shrink:0}
+.ni:hover{background:#1E293B;color:#F8FAFC}
+.ni.on,.ni.on:hover{background:#F59E0B;color:#0F172A;font-weight:700}
+.ni.on svg{fill:#0F172A}
+.cnt{margin-left:auto;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:999px;background:#1E293B;color:#CBD5E1;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.cnt.am{background:#F59E0B;color:#0F172A}
+.ni.on .cnt{background:#0F172A;color:#F59E0B}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#64748B;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:10px 12px;border-bottom:1px solid #E2E8F0;white-space:nowrap;background:#F8FAFC}
+.tbl td{padding:0 12px;height:52px;border-bottom:1px solid #F1F5F9;white-space:nowrap}
+.bd{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600}
+.tab{height:40px;padding:0 4px;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#64748B;text-decoration:none;border-bottom:2px solid transparent}
+.tab.on{color:#0F172A;border-bottom-color:#F59E0B}
+.av{width:32px;height:32px;border-radius:50%;background:#E2E8F0;color:#0F172A;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;vertical-align:middle;margin-right:10px}
+</style>
+
+</head>
+<body>
+<div style="min-height: 900px; display: flex; flex-wrap: wrap; background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A">
+<nav aria-label="Menu do admin" style="flex: 1 1 232px; background: #0F172A; padding: 20px 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px"><div style="width: 36px; height: 36px; border-radius: 10px; background: #F59E0B; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg></div><div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; color: #F8FAFC">[NOME DO APP]</div><div style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: #F59E0B">ADMIN</div></div></div>
+<a class="ni" href="W02-Dashboard.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3zm10 0h8v5h-8zM3 13h8v8H3zm10-3h8v11h-8z"></path></svg>Dashboard</a>
+<a class="ni" href="W03-Corridas.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h2v20H5zM8 3h11l-2.5 4L19 11H8z"></path></svg>Corridas<span class="cnt">27</span></a>
+<a class="ni on" href="W05-Guincheiros.html" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg>Guincheiros<span class="cnt am">7</span></a>
+<a class="ni" href="W08-Clientes.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5z"></path></svg>Clientes</a>
+<a class="ni" href="W09-B2B.html"><svg width="20" height="20" viewBox="0 0 24 24" fill-rule="evenodd" aria-hidden="true"><path d="M4 21V3h10v4h6v14h-6v-4h-4v4zm3-15v2h2V6zm4 0v2h2V6zM7 10v2h2v-2zm4 0v2h2v-2zm6 1v2h2v-2zm0 4v2h2v-2z"></path></svg>Contas B2B</a>
+<a class="ni" href="W10-Financeiro.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h3V10H4zm6.5 0h3V4h-3zM17 20h3v-7h-3z"></path></svg>Financeiro</a>
+<a class="ni" href="W11-Ecossistema.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"></path></svg>Ecossistema</a>
+<a class="ni" href="W12-Precos.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10v2H4zm14 0h2v2h-2zM4 16h4v2H4zm8 0h8v2h-8zM14 4h2v6h-2zM8 14h2v6H8z"></path></svg>Preços</a>
+<div style="flex: 1; min-height: 24px"></div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 8px 0; border-top: 1px solid #1E293B"><div style="width: 36px; height: 36px; border-radius: 50%; background: #334155; color: #F8FAFC; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">CR</div><div><div style="font-size: 14px; font-weight: 600; color: #F8FAFC">Camila Rocha</div><div style="font-size: 12px; color: #94A3B8">Operações</div></div></div>
+</nav>
+
+<main style="flex: 999 1 640px; min-width: 0; padding: 22px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+<header style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+<div style="flex: 1; min-width: 220px"><h1 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em">Guincheiros</h1><div style="font-size: 14px; color: #64748B">412 parceiros · 186 online agora</div></div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap">
+<div style="padding: 8px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E2E8F0"><div style="font-size: 12px; color: #64748B">Nota média</div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px">★ 4,82</div></div>
+<div style="padding: 8px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E2E8F0"><div style="font-size: 12px; color: #64748B">Taxa de aceite</div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px">87%</div></div>
+<div style="padding: 8px 14px; border-radius: 12px; background: #FFFBEB; border: 1px solid #FDE68A"><div style="font-size: 12px; color: #92400E">Docs vencendo</div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px; color: #92400E">12</div></div>
+</div>
+</header>
+
+<div style="display: flex; gap: 24px; border-bottom: 1px solid #E2E8F0; flex-wrap: wrap" role="tablist">
+<a class="tab on" href="W05-Guincheiros.html" role="tab" aria-selected="true">Todos <span class="bd" style="background: #0F172A; color: #FFFFFF; height: 20px; padding: 0 8px">412</span></a>
+<a class="tab" href="#" role="tab" aria-selected="false">Online <span class="bd" style="background: #D1FAE5; color: #065F46; height: 20px; padding: 0 8px">186</span></a>
+<a class="tab" href="W06-Fila.html" role="tab" aria-selected="false">Fila de aprovação <span class="bd" style="background: #F59E0B; color: #0F172A; height: 20px; padding: 0 8px">7</span></a>
+<a class="tab" href="#" role="tab" aria-selected="false">Bloqueados <span class="bd" style="background: #FEE2E2; color: #991B1B; height: 20px; padding: 0 8px">3</span></a>
+</div>
+
+<div style="border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; overflow: hidden">
+<div style="overflow-x: auto">
+<table class="tbl">
+<thead><tr><th scope="col">Guincheiro</th><th scope="col">Caminhão</th><th scope="col">Região</th><th scope="col">Nota</th><th scope="col" style="text-align: right">Corridas/mês</th><th scope="col" style="text-align: right">Líquido/mês</th><th scope="col" style="text-align: right">Aceite</th><th scope="col">Documentos</th><th scope="col">Status</th></tr></thead>
+<tbody>
+<tr><td><span class="av" style="background: #F59E0B">MA</span><strong>Marcos Andrade</strong></td><td>GHT7B31 · Plataforma 3,5 t</td><td>Osasco / Barueri</td><td>★ 4,9</td><td style="text-align: right">41</td><td style="text-align: right; font-weight: 600">R$ 8.912,40</td><td style="text-align: right">94%</td><td><span class="bd" style="background: #FEF3C7; color: #92400E">CNH vence 12/11</span></td><td><span class="bd" style="background: #D1FAE5; color: #065F46">Online</span></td></tr>
+<tr><td><span class="av">SP</span><strong>Sérgio Pinheiro</strong></td><td>FTR2C88 · Plataforma 3,5 t</td><td>Guarulhos</td><td>★ 4,8</td><td style="text-align: right">52</td><td style="text-align: right; font-weight: 600">R$ 11.204,10</td><td style="text-align: right">91%</td><td><span class="bd" style="background: #F1F5F9; color: #334155">Em dia</span></td><td><span class="bd" style="background: #DBEAFE; color: #1E40AF">Em corrida</span></td></tr>
+<tr><td><span class="av">WS</span><strong>Wellington Souza</strong></td><td>DKA8E14 · Plataforma 3,5 t</td><td>SP · Zona Sul</td><td>★ 4,7</td><td style="text-align: right">38</td><td style="text-align: right; font-weight: 600">R$ 7.640,00</td><td style="text-align: right">88%</td><td><span class="bd" style="background: #F1F5F9; color: #334155">Em dia</span></td><td><span class="bd" style="background: #DBEAFE; color: #1E40AF">Em corrida</span></td></tr>
+<tr><td><span class="av">RA</span><strong>Rodrigo Alves</strong></td><td>EJQ3B70 · Plataforma 3,5 t</td><td>ABC</td><td>★ 4,9</td><td style="text-align: right">44</td><td style="text-align: right; font-weight: 600">R$ 9.318,70</td><td style="text-align: right">95%</td><td><span class="bd" style="background: #F1F5F9; color: #334155">Em dia</span></td><td><span class="bd" style="background: #D1FAE5; color: #065F46">Online</span></td></tr>
+<tr><td><span class="av">AR</span><strong>Anderson Reis</strong></td><td>HPL5A62 · Asa delta</td><td>SP · Zona Norte</td><td>★ 4,6</td><td style="text-align: right">29</td><td style="text-align: right; font-weight: 600">R$ 6.105,30</td><td style="text-align: right">82%</td><td><span class="bd" style="background: #F1F5F9; color: #334155">Em dia</span></td><td><span class="bd" style="background: #DBEAFE; color: #1E40AF">Em corrida</span></td></tr>
+<tr><td><span class="av">CM</span><strong>Carla Mendes</strong></td><td>BRT4G21 · Plataforma 3,5 t</td><td>Cotia</td><td>★ 4,8</td><td style="text-align: right">33</td><td style="text-align: right; font-weight: 600">R$ 7.022,80</td><td style="text-align: right">90%</td><td><span class="bd" style="background: #FEF3C7; color: #92400E">CRLV vence 30/10</span></td><td><span class="bd" style="background: #D1FAE5; color: #065F46">Online</span></td></tr>
+<tr><td><span class="av">GN</span><strong>Gilberto Nunes</strong></td><td>CXT6D29 · Munck 12 t</td><td>Guarulhos</td><td>★ 4,7</td><td style="text-align: right">18</td><td style="text-align: right; font-weight: 600">R$ 6.880,20</td><td style="text-align: right">79%</td><td><span class="bd" style="background: #F1F5F9; color: #334155">Em dia</span></td><td><span class="bd" style="background: #F1F5F9; color: #64748B">Offline</span></td></tr>
+<tr><td><span class="av">JM</span><strong>Juliano Matos</strong></td><td>GPV1F05 · Plataforma 3,5 t</td><td>SP · Centro</td><td>★ 4,5</td><td style="text-align: right">26</td><td style="text-align: right; font-weight: 600">R$ 4.910,00</td><td style="text-align: right">76%</td><td><span class="bd" style="background: #F1F5F9; color: #334155">Em dia</span></td><td><span class="bd" style="background: #F1F5F9; color: #64748B">Offline</span></td></tr>
+<tr><td><span class="av">EV</span><strong>Edson Vieira</strong></td><td>KQR9H40 · Plataforma 3,5 t</td><td>ABC</td><td style="color: #B45309; font-weight: 600">★ 4,1</td><td style="text-align: right">21</td><td style="text-align: right; font-weight: 600">R$ 4.020,50</td><td style="text-align: right; color: #B45309; font-weight: 600">61%</td><td><span class="bd" style="background: #F1F5F9; color: #334155">Em dia</span></td><td><span class="bd" style="background: #FEF3C7; color: #92400E">Advertido</span></td></tr>
+<tr><td><span class="av">PR</span><strong>Paulo Rezende</strong></td><td>LMN3J88 · Asa delta</td><td>Osasco</td><td style="color: #B91C1C; font-weight: 600">★ 3,6</td><td style="text-align: right">7</td><td style="text-align: right; font-weight: 600">R$ 1.240,00</td><td style="text-align: right; color: #B91C1C; font-weight: 600">48%</td><td><span class="bd" style="background: #FEE2E2; color: #991B1B">CNH vencida</span></td><td><span class="bd" style="background: #FEE2E2; color: #991B1B">Bloqueado</span></td></tr>
+</tbody>
+</table>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; font-size: 13px; color: #64748B; flex-wrap: wrap; gap: 8px"><span>Mostrando 1–10 de 412 · ordenado por status</span><a href="W06-Fila.html" style="font-weight: 700; color: #B45309">7 cadastros aguardando aprovação →</a></div>
+</div>
+</main>
+</div>
+<a href="../index.html" style="position:fixed;right:16px;bottom:16px;z-index:99;padding:10px 14px;border-radius:10px;background:#0F172A;color:#F59E0B;font:600 13px Inter,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Índice</a>
+</body>
+</html>

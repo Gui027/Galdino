@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Dashboard</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0F172A}a:hover{color:#B45309}
+.ni{display:flex;align-items:center;gap:12px;min-height:42px;padding:0 12px;border-radius:10px;text-decoration:none;color:#CBD5E1;font-size:14px;font-weight:500}
+.ni svg{fill:#94A3B8;flex-shrink:0}
+.ni:hover{background:#1E293B;color:#F8FAFC}
+.ni.on,.ni.on:hover{background:#F59E0B;color:#0F172A;font-weight:700}
+.ni.on svg{fill:#0F172A}
+.cnt{margin-left:auto;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:999px;background:#1E293B;color:#CBD5E1;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.cnt.am{background:#F59E0B;color:#0F172A}
+.ni.on .cnt{background:#0F172A;color:#F59E0B}
+@keyframes pulse{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.8);opacity:0}}
+.pl{transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-out infinite}
+</style>
+
+</head>
+<body>
+<div style="min-height: 900px; display: flex; flex-wrap: wrap; background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A">
+<nav aria-label="Menu do admin" style="flex: 1 1 232px; background: #0F172A; padding: 20px 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px"><div style="width: 36px; height: 36px; border-radius: 10px; background: #F59E0B; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg></div><div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; color: #F8FAFC">[NOME DO APP]</div><div style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: #F59E0B">ADMIN</div></div></div>
+<a class="ni on" href="W02-Dashboard.html" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3zm10 0h8v5h-8zM3 13h8v8H3zm10-3h8v11h-8z"></path></svg>Dashboard</a>
+<a class="ni" href="W03-Corridas.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h2v20H5zM8 3h11l-2.5 4L19 11H8z"></path></svg>Corridas<span class="cnt">27</span></a>
+<a class="ni" href="W05-Guincheiros.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg>Guincheiros<span class="cnt am">7</span></a>
+<a class="ni" href="W08-Clientes.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5z"></path></svg>Clientes</a>
+<a class="ni" href="W09-B2B.html"><svg width="20" height="20" viewBox="0 0 24 24" fill-rule="evenodd" aria-hidden="true"><path d="M4 21V3h10v4h6v14h-6v-4h-4v4zm3-15v2h2V6zm4 0v2h2V6zM7 10v2h2v-2zm4 0v2h2v-2zm6 1v2h2v-2zm0 4v2h2v-2z"></path></svg>Contas B2B</a>
+<a class="ni" href="W10-Financeiro.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h3V10H4zm6.5 0h3V4h-3zM17 20h3v-7h-3z"></path></svg>Financeiro</a>
+<a class="ni" href="W11-Ecossistema.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"></path></svg>Ecossistema</a>
+<a class="ni" href="W12-Precos.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10v2H4zm14 0h2v2h-2zM4 16h4v2H4zm8 0h8v2h-8zM14 4h2v6h-2zM8 14h2v6H8z"></path></svg>Preços</a>
+<div style="flex: 1; min-height: 24px"></div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 8px 0; border-top: 1px solid #1E293B"><div style="width: 36px; height: 36px; border-radius: 50%; background: #334155; color: #F8FAFC; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">CR</div><div><div style="font-size: 14px; font-weight: 600; color: #F8FAFC">Camila Rocha</div><div style="font-size: 12px; color: #94A3B8">Operações</div></div></div>
+</nav>
+
+<main style="flex: 999 1 640px; min-width: 0; padding: 22px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+<header style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap">
+<div style="flex: 1; min-width: 220px"><h1 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em">Dashboard</h1><div style="font-size: 14px; color: #64748B">Grande São Paulo · atualizado agora</div></div>
+<div style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid #E2E8F0; background: #FFFFFF; width: 260px; max-width: 100%; box-sizing: border-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="#64748B" fill-rule="evenodd" aria-hidden="true"><path d="M10 3a7 7 0 1 0 4.2 12.6l5.1 5.1 1.4-1.4-5.1-5.1A7 7 0 0 0 10 3zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"></path></svg><label for="q" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Buscar</label><input id="q" type="search" placeholder="Buscar corrida, placa, CPF…" style="flex: 1; min-width: 0; border: 0; outline: none; font-family: 'Inter', sans-serif; font-size: 14px; background: transparent"></div>
+<span style="height: 40px; padding: 0 14px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E2E8F0; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981"></span>Qui, 22 out · 22:47</span>
+</header>
+
+<section aria-label="Indicadores" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0"><div style="font-size: 13px; color: #64748B; font-weight: 500">Corridas hoje</div><div style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 30px; line-height: 36px">342</div><div style="font-size: 12px; font-weight: 600; color: #047857">▲ 12% vs. qui passada</div></div>
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0"><div style="font-size: 13px; color: #64748B; font-weight: 500">Receita do mês (GMV)</div><div style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 30px; line-height: 36px">R$ 2,16 mi</div><div style="font-size: 12px; font-weight: 600; color: #047857">▲ 18% vs. setembro</div></div>
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0"><div style="font-size: 13px; color: #64748B; font-weight: 500">Comissão · 20%</div><div style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 30px; line-height: 36px; color: #047857">R$ 432,8 mil</div><div style="font-size: 12px; color: #64748B">7.214 corridas no mês</div></div>
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0"><div style="font-size: 13px; color: #64748B; font-weight: 500">Chegada média</div><div style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 30px; line-height: 36px">14 min</div><div style="font-size: 12px; font-weight: 600; color: #047857">Meta: até 15 min</div></div>
+<div style="padding: 16px; border-radius: 16px; background: #0F172A; color: #F8FAFC"><div style="font-size: 13px; color: #94A3B8; font-weight: 500">Guincheiros online</div><div style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 30px; line-height: 36px; color: #34D399">186 <span style="font-size: 16px; color: #94A3B8; font-weight: 600">/ 412</span></div><div style="height: 6px; margin-top: 6px; border-radius: 3px; background: #334155"><div style="width: 45%; height: 6px; border-radius: 3px; background: #34D399"></div></div></div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; flex: 1">
+<div style="grid-column: span 2; padding: 18px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 10px; min-width: 0">
+<div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px"><h2 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px">Corridas por dia</h2><div style="display: flex; gap: 4px; padding: 3px; border-radius: 10px; background: #F1F5F9"><button type="button" aria-pressed="true" style="height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; box-shadow: 0 1px 2px rgba(15,23,42,.08)">14 dias</button><button type="button" style="height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: transparent; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #64748B">30 dias</button><button type="button" style="height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: transparent; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #64748B">12 meses</button></div></div>
+<svg viewBox="0 0 610 220" style="width: 100%; height: 220px" role="img" aria-label="Corridas por dia de 9 a 22 de outubro, entre 281 e 405 por dia; hoje 342 até agora">
+<g stroke="#E2E8F0" stroke-width="1"><path d="M0 190H610"></path><path d="M0 147H610" stroke-dasharray="4 4"></path><path d="M0 104H610" stroke-dasharray="4 4"></path><path d="M0 61H610" stroke-dasharray="4 4"></path><path d="M0 19H610" stroke-dasharray="4 4"></path></g>
+<g font-family="Inter, sans-serif" font-size="10" fill="#64748B"><text x="606" y="144" text-anchor="end">100</text><text x="606" y="101" text-anchor="end">200</text><text x="606" y="58" text-anchor="end">300</text><text x="606" y="16" text-anchor="end">400</text></g>
+<g fill="#CBD5E1"><rect x="8" y="70" width="26" height="120" rx="4"></rect><rect x="51" y="61" width="26" height="129" rx="4"></rect><rect x="94" y="54" width="26" height="136" rx="4"></rect><rect x="137" y="64" width="26" height="126" rx="4"></rect><rect x="179" y="43" width="26" height="147" rx="4"></rect><rect x="222" y="23" width="26" height="167" rx="4"></rect><rect x="265" y="35" width="26" height="155" rx="4"></rect><rect x="308" y="63" width="26" height="127" rx="4"></rect><rect x="351" y="57" width="26" height="133" rx="4"></rect><rect x="394" y="50" width="26" height="140" rx="4"></rect><rect x="437" y="61" width="26" height="129" rx="4"></rect><rect x="479" y="39" width="26" height="151" rx="4"></rect><rect x="522" y="16" width="26" height="174" rx="4" fill="#0F172A"></rect></g>
+<rect x="565" y="43" width="26" height="147" rx="4" fill="#F59E0B"></rect>
+<text x="578" y="36" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="12" fill="#0F172A">342</text>
+<text x="535" y="10" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="700" font-size="12" fill="#0F172A">405</text>
+<g font-family="Inter, sans-serif" font-size="11" fill="#64748B" text-anchor="middle"><text x="21" y="208">09/10</text><text x="107" y="208">11</text><text x="192" y="208">13</text><text x="278" y="208">15</text><text x="364" y="208">17</text><text x="450" y="208">19</text><text x="535" y="208">21</text><text x="578" y="208" font-weight="700" fill="#0F172A">Hoje</text></g>
+</svg>
+</div>
+
+<div style="grid-row: span 2; border-radius: 16px; overflow: hidden; background: #0B1324; position: relative; min-height: 420px; display: flex; flex-direction: column">
+<div style="position: relative; flex: 1; min-height: 340px">
+<svg viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%" aria-hidden="true">
+<rect width="400" height="460" fill="#0B1324"></rect>
+<rect x="250" y="260" width="120" height="90" rx="8" fill="#0C2037"></rect><rect x="40" y="80" width="90" height="70" rx="8" fill="#0F2A24"></rect>
+<g stroke="#18243A" stroke-width="7" fill="none"><path d="M0 120H400"></path><path d="M0 230H400"></path><path d="M0 360H400"></path><path d="M90 0V460"></path><path d="M220 0V460"></path><path d="M330 0V460"></path></g>
+<path d="M-20 420 C 100 360, 160 280, 210 230 S 320 90, 420 40" stroke="#22324D" stroke-width="18" fill="none"></path>
+<path d="M-20 200 C 120 220, 260 210, 420 250" stroke="#22324D" stroke-width="14" fill="none"></path>
+<path d="M60 330 C 100 300, 130 280, 160 250" stroke="#F59E0B" stroke-width="4" fill="none" stroke-linecap="round"></path>
+<g><circle cx="60" cy="330" r="9" fill="#0F172A" stroke="#F59E0B" stroke-width="2.5"></circle><circle cx="160" cy="250" r="6" fill="#F59E0B" stroke="#FFFFFF" stroke-width="2"></circle></g>
+<path d="M260 150 C 280 130, 300 120, 320 100" stroke="#F59E0B" stroke-width="4" fill="none" stroke-linecap="round"></path>
+<circle cx="260" cy="150" r="9" fill="#0F172A" stroke="#F59E0B" stroke-width="2.5"></circle><circle cx="320" cy="100" r="6" fill="#F59E0B" stroke="#FFFFFF" stroke-width="2"></circle>
+<circle cx="120" cy="190" r="9" fill="#F8FAFC" stroke="#0F172A" stroke-width="2.5"></circle><circle cx="300" cy="300" r="9" fill="#F8FAFC" stroke="#0F172A" stroke-width="2.5"></circle><circle cx="350" cy="200" r="9" fill="#F8FAFC" stroke="#0F172A" stroke-width="2.5"></circle><circle cx="190" cy="390" r="9" fill="#F8FAFC" stroke="#0F172A" stroke-width="2.5"></circle>
+<circle cx="200" cy="80" r="9" fill="#0F172A" stroke="#F59E0B" stroke-width="2.5"></circle><circle cx="70" cy="420" r="9" fill="#0F172A" stroke="#F59E0B" stroke-width="2.5"></circle><circle cx="380" cy="400" r="9" fill="#0F172A" stroke="#F59E0B" stroke-width="2.5"></circle>
+<g><circle class="pl" cx="240" cy="330" r="10" fill="#F87171"></circle><circle cx="240" cy="330" r="6" fill="#F87171" stroke="#FFFFFF" stroke-width="2"></circle></g>
+<g><circle class="pl" cx="30" cy="260" r="10" fill="#F87171"></circle><circle cx="30" cy="260" r="6" fill="#F87171" stroke="#FFFFFF" stroke-width="2"></circle></g>
+<g><circle class="pl" cx="370" cy="70" r="10" fill="#F87171"></circle><circle cx="370" cy="70" r="6" fill="#F87171" stroke="#FFFFFF" stroke-width="2"></circle></g>
+</svg>
+<div style="position: absolute; left: 14px; top: 14px; right: 14px; display: flex; justify-content: space-between; align-items: center"><span style="height: 32px; padding: 0 12px; border-radius: 999px; background: #0F172A; border: 1px solid #334155; color: #F8FAFC; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700"><span style="width: 8px; height: 8px; border-radius: 50%; background: #34D399"></span>Ao vivo · 27 ativas</span><a href="W03-Corridas.html" style="height: 32px; padding: 0 12px; border-radius: 999px; background: #F8FAFC; display: inline-flex; align-items: center; font-size: 13px; font-weight: 600; text-decoration: none">Ver todas</a></div>
+</div>
+<div style="padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 14px; background: #0F172A; font-size: 12px; color: #CBD5E1">
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #F87171"></span>Buscando · 3</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 50%; border: 2.5px solid #F59E0B; box-sizing: border-box"></span>A caminho · 14</span>
+<span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #F8FAFC"></span>Em transporte · 10</span>
+</div>
+</div>
+
+<div style="padding: 16px 18px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px">Alertas</h2>
+<a href="W03-Corridas.html" style="display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 12px; background: #FEF2F2; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="#DC2626" fill-rule="evenodd" aria-hidden="true"><path d="M12 2.5 1.5 21h21zM11 9h2v6h-2zm0 8h2v2h-2z"></path></svg><span style="font-size: 13px; line-height: 18px; color: #7F1D1D"><strong>3 pedidos buscando há +3 min</strong> · Zona Leste</span></a>
+<a href="W05-Guincheiros.html" style="display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 12px; background: #FFFBEB; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="#B45309" fill-rule="evenodd" aria-hidden="true"><path d="M5 2h10l5 5v15H5zm9 1.5V8h4.5z"></path></svg><span style="font-size: 13px; line-height: 18px; color: #78350F"><strong>12 CNHs vencem</strong> em 30 dias</span></a>
+<a href="W10-Financeiro.html" style="display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 12px; background: #FFFBEB; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="#B45309" fill-rule="evenodd" aria-hidden="true"><path d="M12 2 22 12 12 22 2 12zM12 7 7 12l5 5 5-5z"></path></svg><span style="font-size: 13px; line-height: 18px; color: #78350F"><strong>3 Pix divergentes</strong> na conciliação</span></a>
+</div>
+
+<div style="padding: 16px 18px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px">Regiões hoje</h2>
+<div style="display: grid; grid-template-columns: 110px 1fr 32px; gap: 8px 10px; align-items: center; font-size: 13px">
+<span>Osasco</span><div style="height: 8px; border-radius: 4px; background: #F1F5F9"><div style="width: 100%; height: 8px; border-radius: 4px; background: #0F172A"></div></div><strong style="text-align: right">41</strong>
+<span>Guarulhos</span><div style="height: 8px; border-radius: 4px; background: #F1F5F9"><div style="width: 93%; height: 8px; border-radius: 4px; background: #0F172A"></div></div><strong style="text-align: right">38</strong>
+<span>SP · Zona Sul</span><div style="height: 8px; border-radius: 4px; background: #F1F5F9"><div style="width: 88%; height: 8px; border-radius: 4px; background: #0F172A"></div></div><strong style="text-align: right">36</strong>
+<span>Santo André</span><div style="height: 8px; border-radius: 4px; background: #F1F5F9"><div style="width: 71%; height: 8px; border-radius: 4px; background: #0F172A"></div></div><strong style="text-align: right">29</strong>
+<span>Barueri</span><div style="height: 8px; border-radius: 4px; background: #F1F5F9"><div style="width: 59%; height: 8px; border-radius: 4px; background: #0F172A"></div></div><strong style="text-align: right">24</strong>
+</div>
+</div>
+</section>
+</main>
+</div>
+<a href="../index.html" style="position:fixed;right:16px;bottom:16px;z-index:99;padding:10px 14px;border-radius:10px;background:#0F172A;color:#F59E0B;font:600 13px Inter,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Índice</a>
+</body>
+</html>

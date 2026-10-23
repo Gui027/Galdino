@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal · Login</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0F172A}a:hover{color:#B45309}
+.ni{display:flex;align-items:center;gap:12px;min-height:42px;padding:0 12px;border-radius:10px;text-decoration:none;color:#CBD5E1;font-size:14px;font-weight:500}
+.ni svg{fill:#94A3B8;flex-shrink:0}
+.ni:hover{background:#1E293B;color:#F8FAFC}
+.ni.on,.ni.on:hover{background:#F59E0B;color:#0F172A;font-weight:700}
+.ni.on svg{fill:#0F172A}
+.cnt{margin-left:auto;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:999px;background:#1E293B;color:#CBD5E1;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.cnt.am{background:#F59E0B;color:#0F172A}
+.ni.on .cnt{background:#0F172A;color:#F59E0B}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#64748B;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:10px 12px;border-bottom:1px solid #E2E8F0;white-space:nowrap;background:#F8FAFC}
+.tbl td{padding:0 12px;height:52px;border-bottom:1px solid #F1F5F9;white-space:nowrap}
+.bd{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600}
+.kp{padding:16px;border-radius:16px;background:#FFFFFF;border:1px solid #E2E8F0}
+.kp .l{font-size:13px;color:#64748B;font-weight:500}.kp .v{font-family:'Outfit',sans-serif;font-weight:800;font-size:28px;line-height:34px}.kp .s{font-size:12px;color:#64748B}
+.lg{width:36px;height:36px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:13px;vertical-align:middle;margin-right:10px}
+
+</style>
+
+</head>
+<body>
+<div style="min-height: 900px; display: flex; flex-wrap: wrap; font-family: 'Inter', sans-serif; color: #0F172A; background: #F8FAFC">
+<main style="flex: 1 1 560px; display: flex; flex-direction: column; padding: 40px 72px; box-sizing: border-box">
+<div style="display: flex; align-items: center; gap: 10px"><div style="width: 36px; height: 36px; border-radius: 10px; background: #F59E0B; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg></div><span style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px">[NOME DO APP]</span><span style="font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: #B45309; margin-left: 4px">EMPRESAS</span></div>
+<div style="flex: 1; display: flex; align-items: center"><div style="width: 100%; max-width: 400px">
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.12em; color: #F59E0B; text-transform: uppercase">Portal da empresa</div>
+<h1 style="margin: 6px 0 8px; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 34px; line-height: 40px; letter-spacing: -0.02em">Entre para cuidar da sua frota</h1>
+<p style="margin: 0 0 28px; font-size: 15px; color: #64748B">Solicite socorro, acompanhe ao vivo e baixe faturas em um só lugar.</p>
+<form style="display: flex; flex-direction: column; gap: 16px">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; ">E-mail corporativo<span style="display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 14px; border: 1px solid #E2E8F0; border-radius: 12px; background: #FFFFFF; font-weight: 500; font-size: 14px">fernanda.okada@rotasul.com.br</span></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; ">Senha<span style="display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 14px; border: 1px solid #E2E8F0; border-radius: 12px; background: #FFFFFF; font-weight: 500; font-size: 14px"><span aria-hidden="true" style="letter-spacing: 3px">••••••••••</span><span style="margin-left: auto; font-size: 13px; color: #64748B">Mostrar</span></span></label>
+<div style="display: flex; justify-content: space-between; font-size: 13px"><span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 18px; height: 18px; border-radius: 5px; background: #0F172A; color: #F59E0B; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg></span>Manter conectado</span><a href="#" style="font-weight: 600">Esqueci a senha</a></div>
+<a href="P02-Visao.html" style="height: 52px; border-radius: 12px; background: #F59E0B; color: #0F172A; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none">Entrar</a>
+<div style="display: flex; align-items: center; gap: 12px; font-size: 12px; color: #94A3B8"><span style="flex: 1; height: 1px; background: #E2E8F0"></span>ou<span style="flex: 1; height: 1px; background: #E2E8F0"></span></div>
+<button type="button" style="height: 48px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E2E8F0; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: #0F172A">Entrar com SSO da empresa</button>
+</form>
+<p style="margin: 24px 0 0; font-size: 13px; color: #64748B">Sua empresa ainda não tem conta? <a href="#" style="font-weight: 600">Fale com vendas</a></p>
+</div></div>
+<div style="font-size: 12px; color: #94A3B8">Central 24h para empresas · 0800 591 4020</div>
+</main>
+<aside style="flex: 1 1 560px; background: #0F172A; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 56px; box-sizing: border-box; color: #F8FAFC">
+<svg viewBox="0 0 720 900" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%" aria-hidden="true">
+<rect width="720" height="900" fill="#111827"></rect>
+<path d="M0 270 C216 225 360 360 720 288" stroke="#1F2A3D" stroke-width="18" fill="none"></path>
+<path d="M144 0 L202 900" stroke="#1F2A3D" stroke-width="12" fill="none"></path>
+<path d="M446 0 C418 360 504 630 475 900" stroke="#1F2A3D" stroke-width="14" fill="none"></path>
+<path d="M0 675 L720 612" stroke="#1F2A3D" stroke-width="10" fill="none"></path>
+<path d="M302 0 L324 900 M0 468 L720 495 M590 0 L619 900 M0 108 L720 135 M0 810 L720 792" stroke="#1A2435" stroke-width="5" fill="none"></path>
+<path d="M518 90 q30 20 60 10 q40 -10 70 20" stroke="#0E3A4A" stroke-width="10" fill="none"></path>
+<path d="M150 690 C230 600 260 520 360 470 S520 330 560 220" stroke="#F59E0B" stroke-width="6" fill="none" stroke-linecap="round"></path><circle cx="150" cy="690" r="10" fill="#EF4444"></circle><circle cx="560" cy="220" r="10" fill="#10B981"></circle><circle cx="360" cy="470" r="16" fill="#F59E0B"></circle>
+</svg>
+<div style="position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px">
+<div style="background: rgba(30,41,59,0.92); border-radius: 16px; padding: 16px"><div style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 30px">18 min</div><div style="font-size: 13px; color: #94A3B8">tempo médio de chegada</div></div>
+<div style="background: rgba(30,41,59,0.92); border-radius: 16px; padding: 16px"><div style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 30px">96%</div><div style="font-size: 13px; color: #94A3B8">SLA de 30 min cumprido</div></div>
+<div style="background: rgba(30,41,59,0.92); border-radius: 16px; padding: 16px"><div style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 30px">1 fatura</div><div style="font-size: 13px; color: #94A3B8">por mês, com NF-e</div></div>
+</div>
+<p style="position: relative; margin: 20px 0 0; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 24px; line-height: 30px; max-width: 460px">Socorro com preço fechado para toda a frota, sem ligar para ninguém.</p>
+</aside>
+</div>
+<a href="../index.html" style="position:fixed;right:16px;bottom:16px;z-index:99;padding:10px 14px;border-radius:10px;background:#0F172A;color:#F59E0B;font:600 13px Inter,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Índice</a>
+</body>
+</html>

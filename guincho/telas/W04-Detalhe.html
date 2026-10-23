@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Detalhe da corrida</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0F172A}a:hover{color:#B45309}
+.ni{display:flex;align-items:center;gap:12px;min-height:42px;padding:0 12px;border-radius:10px;text-decoration:none;color:#CBD5E1;font-size:14px;font-weight:500}
+.ni svg{fill:#94A3B8;flex-shrink:0}
+.ni:hover{background:#1E293B;color:#F8FAFC}
+.ni.on,.ni.on:hover{background:#F59E0B;color:#0F172A;font-weight:700}
+.ni.on svg{fill:#0F172A}
+.cnt{margin-left:auto;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:999px;background:#1E293B;color:#CBD5E1;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.cnt.am{background:#F59E0B;color:#0F172A}
+.ni.on .cnt{background:#0F172A;color:#F59E0B}
+.ph{height:72px;border-radius:10px;background:#334155;color:#E2E8F0;font-size:11px;font-weight:600;display:flex;align-items:flex-end;padding:6px;box-sizing:border-box}
+</style>
+
+</head>
+<body>
+<div style="min-height: 900px; display: flex; flex-wrap: wrap; background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A">
+<nav aria-label="Menu do admin" style="flex: 1 1 232px; background: #0F172A; padding: 20px 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px"><div style="width: 36px; height: 36px; border-radius: 10px; background: #F59E0B; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg></div><div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; color: #F8FAFC">[NOME DO APP]</div><div style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: #F59E0B">ADMIN</div></div></div>
+<a class="ni" href="W02-Dashboard.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3zm10 0h8v5h-8zM3 13h8v8H3zm10-3h8v11h-8z"></path></svg>Dashboard</a>
+<a class="ni on" href="W03-Corridas.html" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h2v20H5zM8 3h11l-2.5 4L19 11H8z"></path></svg>Corridas<span class="cnt">27</span></a>
+<a class="ni" href="W05-Guincheiros.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg>Guincheiros<span class="cnt am">7</span></a>
+<a class="ni" href="W08-Clientes.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5z"></path></svg>Clientes</a>
+<a class="ni" href="W09-B2B.html"><svg width="20" height="20" viewBox="0 0 24 24" fill-rule="evenodd" aria-hidden="true"><path d="M4 21V3h10v4h6v14h-6v-4h-4v4zm3-15v2h2V6zm4 0v2h2V6zM7 10v2h2v-2zm4 0v2h2v-2zm6 1v2h2v-2zm0 4v2h2v-2z"></path></svg>Contas B2B</a>
+<a class="ni" href="W10-Financeiro.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h3V10H4zm6.5 0h3V4h-3zM17 20h3v-7h-3z"></path></svg>Financeiro</a>
+<a class="ni" href="W11-Ecossistema.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"></path></svg>Ecossistema</a>
+<a class="ni" href="W12-Precos.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10v2H4zm14 0h2v2h-2zM4 16h4v2H4zm8 0h8v2h-8zM14 4h2v6h-2zM8 14h2v6H8z"></path></svg>Preços</a>
+<div style="flex: 1; min-height: 24px"></div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 8px 0; border-top: 1px solid #1E293B"><div style="width: 36px; height: 36px; border-radius: 50%; background: #334155; color: #F8FAFC; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">CR</div><div><div style="font-size: 14px; font-weight: 600; color: #F8FAFC">Camila Rocha</div><div style="font-size: 12px; color: #94A3B8">Operações</div></div></div>
+</nav>
+
+<main style="flex: 999 1 640px; min-width: 0; padding: 22px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+<header style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+<div style="flex: 1; min-width: 260px"><div style="font-size: 13px; color: #64748B"><a href="W03-Corridas.html" style="color: #64748B">Corridas</a> / #48213</div><div style="display: flex; align-items: center; gap: 12px"><h1 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em">Reboque #48213</h1><span style="display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; background: #D1FAE5; color: #065F46; font-size: 12px; font-weight: 700">Concluída</span><span style="font-size: 14px; color: #64748B">22/10/2026 · 22:41 → 23:24</span></div></div>
+<button type="button" style="height: 40px; padding: 0 16px; border-radius: 10px; border: 1.5px solid #0F172A; background: transparent; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: #0F172A">Abrir chamado</button>
+<button type="button" style="height: 40px; padding: 0 16px; border-radius: 10px; border: 1.5px solid #DC2626; background: transparent; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: #B91C1C">Reembolsar</button>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="position: relative; height: 250px; border-radius: 16px; overflow: hidden; background: #0B1324">
+<svg viewBox="0 0 760 250" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%" aria-hidden="true">
+<rect width="760" height="250" fill="#0B1324"></rect>
+<g stroke="#18243A" stroke-width="8" fill="none"><path d="M0 80H760"></path><path d="M0 180H760"></path><path d="M180 0V250"></path><path d="M420 0V250"></path><path d="M620 0V250"></path></g>
+<path d="M-20 230 C 160 200, 280 130, 400 120 S 620 60, 780 40" stroke="#22324D" stroke-width="24" fill="none"></path>
+<path d="M90 205 C 200 180, 300 128, 400 122 S 600 70, 670 58" stroke="#F59E0B" stroke-width="6" fill="none" stroke-linecap="round"></path>
+<path d="M30 230 C 50 220, 70 212, 90 205" stroke="#94A3B8" stroke-width="4" stroke-dasharray="2 8" stroke-linecap="round" fill="none"></path>
+<circle cx="90" cy="205" r="13" fill="#F59E0B" stroke="#FFFFFF" stroke-width="3"></circle><text x="90" y="210" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="12" fill="#0F172A">A</text>
+<g transform="translate(670 64) scale(1.2)"><path d="M0 0 L-10 -16 A14 14 0 1 1 10 -16 Z" fill="#F8FAFC" stroke="#0F172A" stroke-width="2"></path><path d="M-5 -33h2v14h-2zM-3 -33h9l-2 3.5 2 3.5h-9z" fill="#0F172A"></path></g>
+</svg>
+<div style="position: absolute; left: 14px; bottom: 14px; display: flex; gap: 8px; flex-wrap: wrap"><span style="height: 30px; padding: 0 12px; border-radius: 999px; background: #F8FAFC; display: inline-flex; align-items: center; font-size: 13px; font-weight: 600">A · Castello Branco km 32</span><span style="height: 30px; padding: 0 12px; border-radius: 999px; background: #F8FAFC; display: inline-flex; align-items: center; font-size: 13px; font-weight: 600">B · Auto Center Vila Yara</span><span style="height: 30px; padding: 0 12px; border-radius: 999px; background: #F59E0B; display: inline-flex; align-items: center; font-size: 13px; font-weight: 700">18,6 km · 19 min de reboque</span></div>
+</div>
+
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><h2 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 17px">Fotos do checklist</h2><span style="font-size: 13px; color: #64748B">1 avaria pré-existente marcada · risco no para-choque traseiro</span></div>
+<div style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 8px">
+<div class="ph" role="img" aria-label="Coleta, frente">Coleta · frente</div><div class="ph" role="img" aria-label="Coleta, traseira" style="background: #475569; outline: 2px solid #F87171; outline-offset: -2px">Traseira ⚠</div><div class="ph" role="img" aria-label="Coleta, lateral esquerda">Lat. esq.</div><div class="ph" role="img" aria-label="Coleta, lateral direita">Lat. dir.</div><div class="ph" role="img" aria-label="Coleta, painel" style="background: #1E293B">Painel</div>
+<div class="ph" role="img" aria-label="Entrega, oficina" style="background: #064E3B">Entrega</div><div class="ph" role="img" aria-label="Entrega, lateral" style="background: #065F46">Lateral</div><div class="ph" role="img" aria-label="Entrega, 48.312 km" style="background: #064E3B">48.312 km</div>
+</div>
+</div>
+
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 17px">Chat · 4 mensagens</h2>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 18px">
+<div style="display: flex; gap: 10px"><span style="width: 44px; color: #64748B">22:43</span><strong style="width: 70px">Marcos</strong><span>Boa noite, Juliana! Já estou indo. Você está no acostamento sentido capital?</span></div>
+<div style="display: flex; gap: 10px"><span style="width: 44px; color: #64748B">22:44</span><strong style="width: 70px">Juliana</strong><span>Sim, logo depois da passarela. Pisca-alerta ligado.</span></div>
+<div style="display: flex; gap: 10px"><span style="width: 44px; color: #64748B">22:45</span><strong style="width: 70px">Marcos</strong><span>Perfeito. Fique atrás da mureta que eu te acho. Chego em 9 min.</span></div>
+<div style="display: flex; gap: 10px"><span style="width: 44px; color: #64748B">22:47</span><strong style="width: 70px">Juliana</strong><span style="color: #64748B">Resposta rápida: “Estou fora do carro”</span></div>
+</div>
+</div>
+</div>
+
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; gap: 12px; align-items: center"><div style="width: 40px; height: 40px; border-radius: 50%; background: #0F172A; color: #F59E0B; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">JF</div><div style="flex: 1"><div style="font-size: 14px; font-weight: 700">Juliana Ferreira Santos</div><div style="font-size: 12px; color: #64748B">Cliente · Fiat Argo FJT4E92 · 4º socorro</div></div><a href="W08-Clientes.html" style="font-size: 13px; font-weight: 600">Ver</a></div>
+<div style="height: 1px; background: #E2E8F0"></div>
+<div style="display: flex; gap: 12px; align-items: center"><div style="width: 40px; height: 40px; border-radius: 50%; background: #F59E0B; color: #0F172A; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">MA</div><div style="flex: 1"><div style="font-size: 14px; font-weight: 700">Marcos Andrade · ★ 4,9</div><div style="font-size: 12px; color: #64748B">Guincheiro · VW Delivery GHT7B31</div></div><a href="W05-Guincheiros.html" style="font-size: 13px; font-weight: 600">Ver</a></div>
+</div>
+
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0">
+<h2 style="margin: 0 0 12px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 17px">Linha do tempo</h2>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; font-size: 13px">
+<li style="display: flex; gap: 10px"><div style="display: flex; flex-direction: column; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #64748B; margin-top: 4px"></span><span style="width: 2px; flex: 1; background: #E2E8F0; min-height: 14px"></span></div><div style="flex: 1; display: flex; justify-content: space-between; padding-bottom: 8px"><span>Pedido criado · preço R$ 312,38</span><span style="color: #64748B">22:41</span></div></li>
+<li style="display: flex; gap: 10px"><div style="display: flex; flex-direction: column; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #2563EB; margin-top: 4px"></span><span style="width: 2px; flex: 1; background: #E2E8F0; min-height: 14px"></span></div><div style="flex: 1; display: flex; justify-content: space-between; padding-bottom: 8px"><span>Aceito por Marcos · 3º ofertado</span><span style="color: #64748B">22:42</span></div></li>
+<li style="display: flex; gap: 10px"><div style="display: flex; flex-direction: column; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #F59E0B; margin-top: 4px"></span><span style="width: 2px; flex: 1; background: #E2E8F0; min-height: 14px"></span></div><div style="flex: 1; display: flex; justify-content: space-between; padding-bottom: 8px"><span>No local · código 7352 ok</span><span style="color: #64748B">22:54</span></div></li>
+<li style="display: flex; gap: 10px"><div style="display: flex; flex-direction: column; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #0F172A; margin-top: 4px"></span><span style="width: 2px; flex: 1; background: #E2E8F0; min-height: 14px"></span></div><div style="flex: 1; display: flex; justify-content: space-between; padding-bottom: 8px"><span>Embarcado · 5 fotos</span><span style="color: #64748B">23:02</span></div></li>
+<li style="display: flex; gap: 10px"><div style="display: flex; flex-direction: column; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #0F172A; margin-top: 4px"></span><span style="width: 2px; flex: 1; background: #E2E8F0; min-height: 14px"></span></div><div style="flex: 1; display: flex; justify-content: space-between; padding-bottom: 8px"><span>Entregue · Rogério Lima assinou</span><span style="color: #64748B">23:21</span></div></li>
+<li style="display: flex; gap: 10px"><div style="display: flex; flex-direction: column; align-items: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: #10B981; margin-top: 4px"></span></div><div style="flex: 1; display: flex; justify-content: space-between"><span style="font-weight: 600">Pago via Pix · avaliação 5★</span><span style="color: #64748B">23:24</span></div></li>
+</ol>
+</div>
+
+<div style="padding: 16px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 8px; font-size: 13px">
+<h2 style="margin: 0 0 4px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 17px">Valores</h2>
+<div style="display: flex; justify-content: space-between"><span style="color: #64748B">Saída + 18,6 km × R$ 9,80</span><span>R$ 302,28</span></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #64748B">Pedágio</span><span>R$ 10,10</span></div>
+<div style="display: flex; justify-content: space-between; font-weight: 700"><span>Cliente pagou</span><span>R$ 312,38</span></div>
+<div style="height: 1px; background: #E2E8F0"></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #64748B">Guincheiro · 80%</span><span>R$ 249,90</span></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #64748B">Gorjeta</span><span>R$ 10,00</span></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-weight: 700">Comissão da plataforma</span><span style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; color: #047857">R$ 62,48</span></div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<a href="../index.html" style="position:fixed;right:16px;bottom:16px;z-index:99;padding:10px 14px;border-radius:10px;background:#0F172A;color:#F59E0B;font:600 13px Inter,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Índice</a>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Contas B2B</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0F172A}a:hover{color:#B45309}
+.ni{display:flex;align-items:center;gap:12px;min-height:42px;padding:0 12px;border-radius:10px;text-decoration:none;color:#CBD5E1;font-size:14px;font-weight:500}
+.ni svg{fill:#94A3B8;flex-shrink:0}
+.ni:hover{background:#1E293B;color:#F8FAFC}
+.ni.on,.ni.on:hover{background:#F59E0B;color:#0F172A;font-weight:700}
+.ni.on svg{fill:#0F172A}
+.cnt{margin-left:auto;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:999px;background:#1E293B;color:#CBD5E1;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.cnt.am{background:#F59E0B;color:#0F172A}
+.ni.on .cnt{background:#0F172A;color:#F59E0B}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#64748B;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:10px 12px;border-bottom:1px solid #E2E8F0;white-space:nowrap;background:#F8FAFC}
+.tbl td{padding:0 12px;height:52px;border-bottom:1px solid #F1F5F9;white-space:nowrap}
+.bd{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600}
+.kp{padding:16px;border-radius:16px;background:#FFFFFF;border:1px solid #E2E8F0}
+.kp .l{font-size:13px;color:#64748B;font-weight:500}.kp .v{font-family:'Outfit',sans-serif;font-weight:800;font-size:28px;line-height:34px}.kp .s{font-size:12px;color:#64748B}
+.lg{width:36px;height:36px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:13px;vertical-align:middle;margin-right:10px}
+</style>
+
+</head>
+<body>
+<div style="min-height: 900px; display: flex; flex-wrap: wrap; background: #F8FAFC; font-family: 'Inter', sans-serif; color: #0F172A">
+<nav aria-label="Menu do admin" style="flex: 1 1 232px; background: #0F172A; padding: 20px 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px"><div style="width: 36px; height: 36px; border-radius: 10px; background: #F59E0B; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="#0F172A" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg></div><div><div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; color: #F8FAFC">[NOME DO APP]</div><div style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: #F59E0B">ADMIN</div></div></div>
+<a class="ni" href="W02-Dashboard.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3zm10 0h8v5h-8zM3 13h8v8H3zm10-3h8v11h-8z"></path></svg>Dashboard</a>
+<a class="ni" href="W03-Corridas.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2h2v20H5zM8 3h11l-2.5 4L19 11H8z"></path></svg>Corridas<span class="cnt">27</span></a>
+<a class="ni" href="W05-Guincheiros.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h11v10H2zM14 8h4l4 4.5V15h-8z"></path><circle cx="6" cy="17" r="2.5"></circle><circle cx="17.5" cy="17" r="2.5"></circle></svg>Guincheiros<span class="cnt am">7</span></a>
+<a class="ni" href="W08-Clientes.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5z"></path></svg>Clientes</a>
+<a class="ni on" href="W09-B2B.html" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" fill-rule="evenodd" aria-hidden="true"><path d="M4 21V3h10v4h6v14h-6v-4h-4v4zm3-15v2h2V6zm4 0v2h2V6zM7 10v2h2v-2zm4 0v2h2v-2zm6 1v2h2v-2zm0 4v2h2v-2z"></path></svg>Contas B2B</a>
+<a class="ni" href="W10-Financeiro.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h3V10H4zm6.5 0h3V4h-3zM17 20h3v-7h-3z"></path></svg>Financeiro</a>
+<a class="ni" href="W11-Ecossistema.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"></path></svg>Ecossistema</a>
+<a class="ni" href="W12-Precos.html"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10v2H4zm14 0h2v2h-2zM4 16h4v2H4zm8 0h8v2h-8zM14 4h2v6h-2zM8 14h2v6H8z"></path></svg>Preços</a>
+<div style="flex: 1; min-height: 24px"></div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 8px 0; border-top: 1px solid #1E293B"><div style="width: 36px; height: 36px; border-radius: 50%; background: #334155; color: #F8FAFC; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">CR</div><div><div style="font-size: 14px; font-weight: 600; color: #F8FAFC">Camila Rocha</div><div style="font-size: 12px; color: #94A3B8">Operações</div></div></div>
+</nav>
+
+<main style="flex: 999 1 640px; min-width: 0; padding: 22px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+<header style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+<div style="flex: 1; min-width: 220px"><h1 style="margin: 0; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em">Contas B2B</h1><div style="font-size: 14px; color: #64748B">Locadoras, frotistas e assinaturas de carro</div></div>
+<button type="button" style="height: 40px; padding: 0 16px; border-radius: 10px; border: 0; background: #F59E0B; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; color: #0F172A">+ Nova conta</button>
+</header>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px" aria-label="Indicadores B2B">
+<div class="kp"><div class="l">Contas ativas</div><div class="v">38</div><div class="s">+3 em outubro · 2 em teste</div></div>
+<div class="kp"><div class="l">Socorros B2B em outubro</div><div class="v">1.164</div><div class="s">16% de todas as corridas</div></div>
+<div class="kp"><div class="l">Faturamento B2B no mês</div><div class="v">R$ 326,9 mil</div><div class="s">faturado em 31/10</div></div>
+<div class="kp"><div class="l">SLA de 30 min cumprido</div><div class="v" style="color: #047857">96%</div><div class="s">meta contratual: 95%</div></div>
+</section>
+
+<div style="border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; overflow: hidden">
+<div style="overflow-x: auto">
+<table class="tbl">
+<thead><tr><th scope="col">Empresa</th><th scope="col">Segmento</th><th scope="col">Contrato</th><th scope="col" style="text-align: right">Frota</th><th scope="col" style="text-align: right">Socorros out.</th><th scope="col" style="text-align: right">Valor out.</th><th scope="col" style="text-align: right">SLA</th><th scope="col">Renovação</th><th scope="col">Status</th></tr></thead>
+<tbody>
+<tr><td><span class="lg" style="background: #FEF3C7; color: #92400E">MA</span><strong>Mobi Assinaturas de Carro</strong></td><td>Carro por assinatura</td><td>Enterprise · −10%</td><td style="text-align: right">2.100</td><td style="text-align: right">211</td><td style="text-align: right; font-weight: 600">R$ 58.910,40</td><td style="text-align: right">96%</td><td>02/2027</td><td><span class="bd" style="background: #D1FAE5; color: #065F46">Ativa</span></td></tr>
+<tr style="background: #FFFBEB"><td><span class="lg" style="background: #0F172A; color: #F59E0B">RS</span><strong>Rota Sul Locadora</strong></td><td>Locadora</td><td>Enterprise · −8%</td><td style="text-align: right">1.240</td><td style="text-align: right">186</td><td style="text-align: right; font-weight: 600">R$ 52.140,00</td><td style="text-align: right">97%</td><td>03/2027</td><td><span class="bd" style="background: #D1FAE5; color: #065F46">Ativa</span></td></tr>
+<tr><td><span class="lg" style="background: #DBEAFE; color: #1E40AF">FP</span><strong>Frota Paulista Logística</strong></td><td>Transporte</td><td>Enterprise · −8%</td><td style="text-align: right">860</td><td style="text-align: right">142</td><td style="text-align: right; font-weight: 600">R$ 48.311,20</td><td style="text-align: right">95%</td><td><span style="color: #B45309; font-weight: 700">31/10 · 9 dias</span></td><td><span class="bd" style="background: #FEF3C7; color: #92400E">Renovar</span></td></tr>
+<tr><td><span class="lg" style="background: #D1FAE5; color: #065F46">AC</span><strong>Alfa Car Locações</strong></td><td>Locadora</td><td>Pro · −5%</td><td style="text-align: right">420</td><td style="text-align: right">64</td><td style="text-align: right; font-weight: 600">R$ 17.920,00</td><td style="text-align: right">98%</td><td>06/2027</td><td><span class="bd" style="background: #D1FAE5; color: #065F46">Ativa</span></td></tr>
+<tr><td><span class="lg" style="background: #F1F5F9; color: #334155">TL</span><strong>TransLeste Distribuidora</strong></td><td>Distribuição</td><td>Pro · −5%</td><td style="text-align: right">310</td><td style="text-align: right">51</td><td style="text-align: right; font-weight: 600">R$ 16.488,30</td><td style="text-align: right; color: #B91C1C; font-weight: 600">92%</td><td>01/2027</td><td><span class="bd" style="background: #FEE2E2; color: #991B1B">SLA abaixo</span></td></tr>
+<tr><td><span class="lg" style="background: #FEE2E2; color: #991B1B">VV</span><strong>Vai de Van Fretamentos</strong></td><td>Fretamento</td><td>Pro · −5%</td><td style="text-align: right">95</td><td style="text-align: right">22</td><td style="text-align: right; font-weight: 600">R$ 9.205,10</td><td style="text-align: right">100%</td><td>08/2027</td><td><span class="bd" style="background: #D1FAE5; color: #065F46">Ativa</span></td></tr>
+<tr><td><span class="lg" style="background: #E0E7FF; color: #3730A3">CV</span><strong>Clínica Vida Home Care</strong></td><td>Frota própria</td><td>Essencial</td><td style="text-align: right">18</td><td style="text-align: right">3</td><td style="text-align: right; font-weight: 600">R$ 812,00</td><td style="text-align: right">100%</td><td>teste até 05/11</td><td><span class="bd" style="background: #DBEAFE; color: #1E40AF">Em teste</span></td></tr>
+</tbody>
+</table>
+</div>
+<div style="padding: 12px 16px; font-size: 13px; color: #64748B">Mostrando 7 de 38 · ordenado por valor no mês</div>
+</div>
+</main>
+</div>
+<a href="../index.html" style="position:fixed;right:16px;bottom:16px;z-index:99;padding:10px 14px;border-radius:10px;background:#0F172A;color:#F59E0B;font:600 13px Inter,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Índice</a>
+</body>
+</html>
