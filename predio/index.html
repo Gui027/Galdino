@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>Aurea Ocean Residence — Tour Imersivo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Aurea Ocean Residence">
+        <span class="brand-mark">A</span>
+        <span><strong>AUREA</strong><small>OCEAN RESIDENCE</small></span>
+      </a>
+      <div class="top-actions">
+        <button class="icon-btn" id="soundButton" type="button" aria-label="Ativar som" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9v6h4l5 4V5L9 9H5Zm12.5 3a5 5 0 0 0-2-4.07v8.14A5 5 0 0 0 17.5 12Z"/></svg>
+          <span>Som</span>
+        </button>
+        <button class="menu-btn" type="button" aria-label="Abrir menu"><span></span><span></span></button>
+      </div>
+    </header>
+
+    <main class="scene scene-building is-active" id="buildingScene" aria-label="Seleção de andares">
+      <div class="scene-media building-media"></div>
+      <div class="grain"></div>
+      <div class="floor-map" id="floorMap" aria-label="Andares disponíveis"></div>
+
+      <section class="intro-copy">
+        <p class="eyebrow">Viva acima do horizonte</p>
+        <h1>Escolha sua<br><em>nova vista.</em></h1>
+        <p>Explore cada andar e descubra um novo jeito de morar de frente para o mar.</p>
+        <div class="scroll-hint"><span></span> Passe o mouse pelo edifício</div>
+      </section>
+
+      <aside class="floor-panel" id="floorPanel">
+        <div class="panel-index">RESIDÊNCIAS / <span>01</span></div>
+        <div class="floor-heading">
+          <span>ANDAR</span>
+          <strong id="floorNumber">24</strong>
+        </div>
+        <h2 id="floorName">Residence 2401</h2>
+        <p id="floorDescription">Planta panorâmica com living integrado e vista permanente para o oceano.</p>
+        <dl class="floor-specs">
+          <div><dt>Área privativa</dt><dd id="floorArea">284 m²</dd></div>
+          <div><dt>Suítes</dt><dd id="floorSuites">4</dd></div>
+          <div><dt>Vagas</dt><dd>3</dd></div>
+        </dl>
+        <button class="primary-button" id="enterButton" type="button">
+          <span>VISITAR ESTE APARTAMENTO</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <div class="floor-nav">
+          <button id="prevFloor" type="button" aria-label="Andar anterior">←</button>
+          <span><b id="currentFloorLabel">24</b> / 28</span>
+          <button id="nextFloor" type="button" aria-label="Próximo andar">→</button>
+        </div>
+      </aside>
+    </main>
+
+    <section class="flight" id="flightScene" aria-hidden="true">
+      <div class="flight-image"></div>
+      <div class="flight-vignette"></div>
+      <div class="flight-copy">
+        <span>ENTRANDO NO</span>
+        <strong id="flightFloor">24º ANDAR</strong>
+        <i></i>
+      </div>
+    </section>
+
+    <main class="scene scene-interior" id="interiorScene" aria-label="Tour pelo apartamento">
+      <div class="room-images" aria-hidden="true">
+        <div class="room-image is-active" data-room="living"></div>
+        <div class="room-image" data-room="suite"></div>
+        <div class="room-image" data-room="bath"></div>
+        <div class="room-image" data-room="balcony"></div>
+      </div>
+      <div class="interior-shade"></div>
+      <button class="back-button" id="backButton" type="button">← <span>VOLTAR AO EDIFÍCIO</span></button>
+
+      <section class="room-copy" id="roomCopy">
+        <p class="eyebrow" id="roomEyebrow">RESIDENCE 2401 · 24º ANDAR</p>
+        <h2 id="roomTitle">Living<br><em>panorâmico</em></h2>
+        <p id="roomDescription">Amplitude, luz natural e o oceano como parte da decoração.</p>
+        <div class="room-count"><b id="roomIndex">01</b><span></span><small>04</small></div>
+      </section>
+
+      <div class="hotspots" id="hotspots" aria-label="Pontos do tour">
+        <button class="hotspot hotspot-suite" data-target="suite" type="button"><i></i><span>Suíte master</span></button>
+        <button class="hotspot hotspot-bath" data-target="bath" type="button"><i></i><span>Sala de banho</span></button>
+        <button class="hotspot hotspot-balcony" data-target="balcony" type="button"><i></i><span>Varanda</span></button>
+      </div>
+
+      <nav class="room-nav" aria-label="Ambientes">
+        <button class="is-active" data-room-button="living" type="button"><span>01</span> Living</button>
+        <button data-room-button="suite" type="button"><span>02</span> Suíte</button>
+        <button data-room-button="bath" type="button"><span>03</span> Banho</button>
+        <button data-room-button="balcony" type="button"><span>04</span> Varanda</button>
+      </nav>
+      <p class="drag-hint"><i>↔</i> Escolha um ambiente para continuar</p>
+    </main>
+
+    <div class="mobile-note"><span>↻</span> Para uma experiência mais imersiva, use o celular na horizontal.</div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

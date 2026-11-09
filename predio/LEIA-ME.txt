@@ -1,0 +1,13 @@
+AUREA OCEAN RESIDENCE — PROTÓTIPO IMERSIVO
+
+Abra index.html em um navegador moderno. Não há instalação nem servidor obrigatório.
+
+O protótipo inclui:
+- luz e informações ao passar o mouse pelos andares 21 a 28;
+- navegação também por teclado (setas, Enter e Esc);
+- transição simulando voo de drone até o apartamento;
+- quatro pontos do tour: living, suíte, banho e varanda;
+- layout responsivo e modo de movimento reduzido.
+
+IMPORTANTE PARA UMA VERSÃO REAL:
+As imagens atuais foram geradas por IA e servem como conceito visual. Para reproduzir fielmente um empreendimento, substitua os arquivos da pasta assets por renders 3D, fotos 360 ou vídeos entregues pelo arquiteto/incorporadora. Uma navegação realmente contínua, sem cortes, deve usar vídeo filmado/renderizado ou um modelo 3D WebGL (Three.js/Babylon.js), além de versões comprimidas para web.
