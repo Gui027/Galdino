@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081e38">
+  <title>Portal I · Protótipo navegável</title>
+  <style>
+    :root {
+      --navy: #081e38;
+      --navy-2: #102d50;
+      --red: #cf1234;
+      --red-2: #ef3150;
+      --cream: #f5f3ed;
+      --panel: #ffffff;
+      --ink: #172033;
+      --muted: #687386;
+      --line: #dce2eb;
+      --soft: #eef2f7;
+      --green: #20803d;
+      --shadow: 0 24px 70px rgba(8, 30, 56, .2);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      color: var(--ink);
+      background: var(--cream);
+      font: 14px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    button { font: inherit; }
+    button:focus-visible { outline: 3px solid rgba(207, 18, 52, .28); outline-offset: 2px; }
+
+    .topbar {
+      min-height: 70px;
+      padding: 12px clamp(16px, 2.2vw, 30px);
+      color: #fff;
+      background:
+        radial-gradient(circle at 35% -80%, rgba(255,255,255,.2), transparent 35%),
+        linear-gradient(112deg, var(--navy), #0c2949 68%, #12385f);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      z-index: 5;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: max-content; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: grid; place-items: center;
+      background: var(--red);
+      box-shadow: 0 10px 24px rgba(207, 18, 52, .3);
+      font: 800 24px Georgia, serif;
+    }
+    .brand-copy strong { display: block; font-size: 16px; letter-spacing: -.01em; }
+    .brand-copy span { color: #b7c7db; font-size: 11px; }
+    .mode-tabs {
+      margin-left: auto;
+      display: flex;
+      gap: 5px;
+      padding: 5px;
+      background: rgba(0, 0, 0, .18);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 13px;
+    }
+    .mode-tab {
+      min-height: 38px;
+      padding: 0 17px;
+      color: #c7d4e3;
+      background: transparent;
+      border: 0;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mode-tab:hover { color: #fff; background: rgba(255,255,255,.06); }
+    .mode-tab.is-active { color: #fff; background: var(--red); box-shadow: 0 5px 16px rgba(207,18,52,.26); }
+    .mode-tab svg { width: 18px; height: 18px; }
+
+    .workspace { min-height: 0; flex: 1; display: flex; }
+    .sidebar {
+      width: 286px;
+      flex: 0 0 286px;
+      background: rgba(255,255,255,.94);
+      border-right: 1px solid var(--line);
+      padding: 18px 14px 26px;
+      overflow: auto;
+      scrollbar-width: thin;
+    }
+    .sidebar-head { padding: 2px 8px 15px; border-bottom: 1px solid var(--line); margin-bottom: 10px; }
+    .sidebar-head b { display: block; font-size: 14px; }
+    .sidebar-head span { color: var(--muted); font-size: 12px; }
+    .group-title {
+      margin: 19px 8px 7px;
+      color: #8994a4;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .screen-button {
+      width: 100%;
+      padding: 9px 9px;
+      border: 0;
+      border-radius: 11px;
+      background: transparent;
+      color: var(--ink);
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+      cursor: pointer;
+      transition: background .15s, transform .15s;
+    }
+    .screen-button:hover { background: var(--soft); transform: translateX(2px); }
+    .screen-button.is-active { background: #fff0f3; color: #a80e28; }
+    .screen-number {
+      width: 32px; height: 32px; border-radius: 9px;
+      display: grid; place-items: center;
+      background: var(--soft);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .screen-button.is-active .screen-number { color: #fff; background: var(--red); }
+    .screen-label { font-weight: 650; font-size: 13px; }
+    .screen-tag {
+      color: #7a8493;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 2px 6px;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .screen-button.is-active .screen-tag { color: var(--red); border-color: #f0b6c1; background: #fff; }
+
+    .preview {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+      padding: clamp(12px, 1.8vw, 24px);
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,.96), rgba(245,243,237,.66) 54%, rgba(224,228,234,.8)),
+        linear-gradient(135deg, rgba(8,30,56,.04) 25%, transparent 25%) 0 0/28px 28px;
+    }
+    .preview-head {
+      display: flex;
+      align-items: center;
+      min-height: 43px;
+      gap: 12px;
+      padding: 0 2px;
+    }
+    .preview-title { min-width: 0; }
+    .preview-title b { display: block; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .preview-title span { color: var(--muted); font-size: 11px; }
+    .preview-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+    .icon-button {
+      width: 38px; height: 38px;
+      display: grid; place-items: center;
+      color: var(--navy);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(8,30,56,.06);
+    }
+    .icon-button:hover:not(:disabled) { color: #fff; background: var(--red); border-color: var(--red); }
+    .icon-button:disabled { opacity: .38; cursor: default; }
+    .icon-button svg { width: 18px; height: 18px; }
+    .shortcut { color: var(--muted); font-size: 11px; margin-left: 6px; }
+    kbd { background: #fff; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 1px 5px; font: 700 10px inherit; }
+
+    .stage { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+    .device {
+      position: relative;
+      background: #101827;
+      box-shadow: var(--shadow), 0 0 0 1px rgba(8,30,56,.24);
+      overflow: hidden;
+      transition: width .22s, height .22s, border-radius .22s, padding .22s;
+    }
+    .device.desktop {
+      width: min(100%, 1280px);
+      height: 100%;
+      min-height: 400px;
+      padding: 10px 10px 14px;
+      border-radius: 18px;
+    }
+    .device.desktop::before {
+      content: "";
+      position: absolute;
+      top: 4px; left: 50%; transform: translateX(-50%);
+      width: 34px; height: 3px; border-radius: 4px;
+      background: #3c4859;
+    }
+    .device.mobile {
+      width: 370px;
+      height: min(100%, 800px);
+      padding: 11px;
+      border-radius: 39px;
+    }
+    .device.mobile::before {
+      content: "";
+      position: absolute; z-index: 3;
+      top: 17px; left: 50%; transform: translateX(-50%);
+      width: 92px; height: 23px; border-radius: 18px;
+      background: #101827;
+      pointer-events: none;
+    }
+    .device-screen { width: 100%; height: 100%; overflow: hidden; background: #fff; }
+    .desktop .device-screen { border-radius: 10px; }
+    .mobile .device-screen { border-radius: 30px; }
+    iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; opacity: 1; transition: opacity .16s; }
+    iframe.is-loading { opacity: 0; }
+    .loading {
+      position: absolute; inset: 0; display: none; place-items: center;
+      color: #fff; font-weight: 700; font-size: 12px; letter-spacing: .04em;
+      background: #101827;
+    }
+    .device.is-loading .loading { display: grid; }
+    .loading::before {
+      content: ""; width: 26px; height: 26px; margin-right: 10px;
+      border: 3px solid rgba(255,255,255,.24); border-top-color: var(--red-2); border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .scrim, .menu-button { display: none; }
+    .toast {
+      position: fixed; left: 50%; bottom: 24px; z-index: 30;
+      transform: translate(-50%, 20px);
+      background: #10233b; color: #fff;
+      padding: 10px 15px; border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(8,30,56,.24);
+      opacity: 0; pointer-events: none; transition: .2s;
+      font-size: 12px;
+    }
+    .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 900px) {
+      .topbar { min-height: 64px; padding: 10px 14px; gap: 10px; }
+      .brand-copy span { display: none; }
+      .mode-tab { padding: 0 11px; }
+      .sidebar {
+        position: fixed; inset: 64px auto 0 0; z-index: 20;
+        transform: translateX(-102%); transition: transform .2s;
+        box-shadow: 18px 0 45px rgba(8,30,56,.2);
+      }
+      body.menu-open .sidebar { transform: none; }
+      .scrim { position: fixed; inset: 64px 0 0; z-index: 15; background: rgba(8,30,56,.45); }
+      body.menu-open .scrim { display: block; }
+      .menu-button { display: grid; }
+      .shortcut { display: none; }
+      .preview { padding: 10px; }
+      .device.desktop { width: 100%; }
+    }
+    @media (max-width: 560px) {
+      .topbar { padding-inline: 8px; gap: 6px; }
+      .brand-copy { display: none; }
+      .brand-mark { width: 36px; height: 36px; border-radius: 10px; font-size: 21px; }
+      .mode-tabs { flex: 1; padding: 3px; gap: 3px; min-width: 0; }
+      .mode-tab { flex: 1; min-width: 0; justify-content: center; padding: 0 5px; font-size: 11.5px; white-space: nowrap; }
+      .mode-tab svg { display: none; }
+      .preview-head { gap: 7px; }
+      .preview-title span { display: none; }
+      .icon-button { width: 36px; height: 36px; }
+      .device.mobile { width: min(100%, 370px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">I</div>
+      <div class="brand-copy"><strong>Portal I · Protótipo</strong><span>Itaguaçu, Itarana e região</span></div>
+    </div>
+    <div class="mode-tabs" role="tablist" aria-label="Área do protótipo">
+      <button class="mode-tab is-active" type="button" data-mode="public" role="tab" aria-selected="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10M9 20v-6h6v6"/></svg>
+        Portal público
+      </button>
+      <button class="mode-tab" type="button" data-mode="admin" role="tab" aria-selected="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 9v11"/></svg>
+        Administração
+      </button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <aside class="sidebar" id="sidebar" aria-label="Telas do protótipo">
+      <div class="sidebar-head"><b id="sideTitle">Experiência do leitor</b><span id="sideSubtitle">6 telas disponíveis</span></div>
+      <div id="screenList"></div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <main class="preview">
+      <div class="preview-head">
+        <button class="icon-button menu-button" id="menuButton" type="button" aria-label="Abrir lista de telas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <div class="preview-title"><b id="screenTitle">Página inicial</b><span id="screenMeta">Portal público · desktop</span></div>
+        <div class="preview-actions">
+          <button class="icon-button" id="prevButton" type="button" aria-label="Tela anterior">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 5-7 7 7 7"/></svg>
+          </button>
+          <button class="icon-button" id="nextButton" type="button" aria-label="Próxima tela">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 5 7 7-7 7"/></svg>
+          </button>
+          <button class="icon-button" id="reloadButton" type="button" aria-label="Recarregar tela">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6v5h-5"/><path d="M18.5 15a7 7 0 1 1-.9-7.8L20 10"/></svg>
+          </button>
+          <span class="shortcut"><kbd>←</kbd> <kbd>→</kbd> para navegar</span>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="device desktop is-loading" id="device">
+          <div class="device-screen"><iframe id="frame" title="Visualização da tela" class="is-loading"></iframe></div>
+          <div class="loading">Carregando tela</div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const FLOWS = {
+      public: {
+        title: 'Experiência do leitor',
+        groups: [
+          { title: 'Página inicial', screens: [
+            { id: 'home-desktop', label: 'Home', tag: 'Desktop', file: 'home-desktop.html', device: 'desktop' },
+            { id: 'home-celular', label: 'Home', tag: 'Celular', file: 'home-celular.html', device: 'mobile' }
+          ]},
+          { title: 'Conteúdo', screens: [
+            { id: 'noticia-desktop', label: 'Leitura da notícia', tag: 'Desktop', file: 'noticia-desktop.html', device: 'desktop' },
+            { id: 'noticia-celular', label: 'Leitura da notícia', tag: 'Celular', file: 'noticia-celular.html', device: 'mobile' },
+            { id: 'categoria-agricultura', label: 'Categoria Agricultura', tag: 'Desktop', file: 'categoria-agricultura.html', device: 'desktop' },
+            { id: 'publicidade-legal', label: 'Publicidade Legal', tag: 'Desktop', file: 'publicidade-legal.html', device: 'desktop' }
+          ]}
+        ]
+      },
+      admin: {
+        title: 'Gestão editorial',
+        groups: [
+          { title: 'Acesso', screens: [
+            { id: 'admin-login', label: 'Entrar no painel', tag: 'Desktop', file: 'admin-login.html', device: 'desktop' }
+          ]},
+          { title: 'Redação', screens: [
+            { id: 'admin-dashboard', label: 'Visão geral', tag: 'Desktop', file: 'admin-dashboard.html', device: 'desktop' },
+            { id: 'admin-noticias', label: 'Lista de notícias', tag: 'Desktop', file: 'admin-noticias.html', device: 'desktop' },
+            { id: 'admin-editor', label: 'Editor de notícia', tag: 'Desktop', file: 'admin-editor.html', device: 'desktop' }
+          ]}
+        ]
+      }
+    };
+
+    const linkMap = {
+      'home.dc.html': 'home-desktop',
+      'noticia.dc.html': 'noticia-desktop',
+      'categoria-agricultura.dc.html': 'categoria-agricultura',
+      'publicidade-legal.dc.html': 'publicidade-legal',
+      'admin-login.dc.html': 'admin-login',
+      'admin-dashboard.dc.html': 'admin-dashboard',
+      'admin-noticias.dc.html': 'admin-noticias',
+      'admin-editor.dc.html': 'admin-editor'
+    };
+
+    const allScreens = Object.entries(FLOWS).flatMap(([mode, flow]) =>
+      flow.groups.flatMap(group => group.screens.map(screen => ({ ...screen, mode, group: group.title })))
+    );
+    const byId = Object.fromEntries(allScreens.map(screen => [screen.id, screen]));
+    let mode = 'public';
+    let currentId = 'home-desktop';
+    let toastTimer;
+
+    const $ = id => document.getElementById(id);
+    const frame = $('frame');
+    const device = $('device');
+    const list = $('screenList');
+
+    function screensInMode(value = mode) {
+      return FLOWS[value].groups.flatMap(group => group.screens);
+    }
+
+    function renderList() {
+      const flow = FLOWS[mode];
+      const screens = screensInMode();
+      $('sideTitle').textContent = flow.title;
+      $('sideSubtitle').textContent = screens.length + (screens.length === 1 ? ' tela disponível' : ' telas disponíveis');
+      let position = 0;
+      list.innerHTML = flow.groups.map(group => {
+        const buttons = group.screens.map(screen => {
+          position += 1;
+          return `<button class="screen-button${screen.id === currentId ? ' is-active' : ''}" type="button" data-id="${screen.id}">
+            <span class="screen-number">${String(position).padStart(2, '0')}</span>
+            <span class="screen-label">${screen.label}</span>
+            <span class="screen-tag">${screen.tag}</span>
+          </button>`;
+        }).join('');
+        return `<h2 class="group-title">${group.title}</h2>${buttons}`;
+      }).join('');
+    }
+
+    function updateTabs() {
+      document.querySelectorAll('.mode-tab').forEach(tab => {
+        const active = tab.dataset.mode === mode;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', active);
+      });
+    }
+
+    function showScreen(id, options = {}) {
+      const screen = byId[id];
+      if (!screen) return;
+      currentId = id;
+      mode = screen.mode;
+      const siblings = screensInMode();
+      const index = siblings.findIndex(item => item.id === id);
+      updateTabs();
+      renderList();
+      $('screenTitle').textContent = screen.label;
+      $('screenMeta').textContent = `${screen.mode === 'public' ? 'Portal público' : 'Administração'} · ${screen.tag.toLowerCase()} · tela ${index + 1} de ${siblings.length}`;
+      $('prevButton').disabled = index === 0;
+      $('nextButton').disabled = index === siblings.length - 1;
+      device.classList.toggle('mobile', screen.device === 'mobile');
+      device.classList.toggle('desktop', screen.device !== 'mobile');
+      document.body.classList.remove('menu-open');
+      if (!options.keepFrame || frame.dataset.id !== id) {
+        device.classList.add('is-loading');
+        frame.classList.add('is-loading');
+        frame.dataset.id = id;
+        frame.src = `telas/${screen.file}`;
+      }
+      history.replaceState(null, '', `#${id}`);
+    }
+
+    function move(delta) {
+      const screens = screensInMode();
+      const index = screens.findIndex(screen => screen.id === currentId);
+      const target = screens[index + delta];
+      if (target) showScreen(target.id);
+    }
+
+    function showToast(message) {
+      const toast = $('toast');
+      toast.textContent = message;
+      toast.classList.add('is-visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2200);
+    }
+
+    function connectPrototypeLinks() {
+      let doc;
+      try { doc = frame.contentDocument; } catch (_) { return; }
+      if (!doc || !doc.documentElement) return;
+      doc.addEventListener('click', event => {
+        const anchor = event.target.closest && event.target.closest('a[href]');
+        if (!anchor) return;
+        const href = (anchor.getAttribute('href') || '').split(/[?#]/)[0].split('/').pop();
+        const target = linkMap[href];
+        if (target) {
+          event.preventDefault();
+          showScreen(target);
+        } else if (href && href !== '#') {
+          event.preventDefault();
+          showToast('Este link é demonstrativo no protótipo.');
+        }
+      }, true);
+      const style = doc.createElement('style');
+      style.textContent = `a,button,[role="button"]{cursor:pointer!important} :focus-visible{outline:3px solid rgba(207,18,52,.35)!important;outline-offset:2px!important}`;
+      doc.head && doc.head.appendChild(style);
+    }
+
+    frame.addEventListener('load', () => {
+      setTimeout(() => {
+        frame.classList.remove('is-loading');
+        device.classList.remove('is-loading');
+        connectPrototypeLinks();
+      }, 450);
+    });
+    list.addEventListener('click', event => {
+      const button = event.target.closest('.screen-button');
+      if (button) showScreen(button.dataset.id);
+    });
+    document.querySelectorAll('.mode-tab').forEach(tab => tab.addEventListener('click', () => {
+      if (tab.dataset.mode === mode) return;
+      const first = screensInMode(tab.dataset.mode)[0];
+      showScreen(first.id);
+    }));
+    $('prevButton').addEventListener('click', () => move(-1));
+    $('nextButton').addEventListener('click', () => move(1));
+    $('reloadButton').addEventListener('click', () => {
+      frame.removeAttribute('data-id');
+      showScreen(currentId);
+    });
+    $('menuButton').addEventListener('click', () => document.body.classList.toggle('menu-open'));
+    $('scrim').addEventListener('click', () => document.body.classList.remove('menu-open'));
+    document.addEventListener('keydown', event => {
+      if (event.target.matches('input, textarea, select, [contenteditable="true"]')) return;
+      if (event.key === 'ArrowLeft') move(-1);
+      if (event.key === 'ArrowRight') move(1);
+      if (event.key === 'Escape') document.body.classList.remove('menu-open');
+    });
+
+    const start = location.hash.slice(1);
+    showScreen(byId[start] ? start : currentId);
+  </script>
+</body>
+</html>

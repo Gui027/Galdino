@@ -1,0 +1,15 @@
+PORTAL I — PROTÓTIPO NAVEGÁVEL
+
+Abra o arquivo index.html no navegador.
+
+O protótipo reúne:
+- Portal público: home, notícia, categoria Agricultura e Publicidade Legal.
+- Versões desktop e celular das principais telas.
+- Área administrativa: login, dashboard, lista de notícias e editor.
+
+NAVEGAÇÃO
+- Clique nas telas da barra lateral.
+- Use as setas do cabeçalho ou do teclado.
+- Os links principais dentro das telas também levam às páginas correspondentes.
+
+Todo o conteúdo funciona localmente e não depende de servidor.
