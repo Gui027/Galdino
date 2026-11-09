@@ -48,30 +48,113 @@ function selectFloor(number) {
   $$(".floor-hit").forEach((item) => item.classList.toggle("is-selected", Number(item.dataset.floor) === selectedFloor));
 }
 
+const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let isFlying = false;
+
+// Voo de drone: aproxima do prédio, mira na janela do andar escolhido e atravessa o vidro.
 function startFlight() {
+  if (isFlying) return;
+  isFlying = true;
+
   const flight = $("#flightScene");
+  const image = $(".flight-image");
+  const flash = $("#flightFlash");
+  const copy = $(".flight-copy");
+  const hit = $(".floor-hit.is-selected");
+  const D = prefersReducedMotion() ? 1400 : 4400;
+
   $("#flightFloor").textContent = `${selectedFloor}º ANDAR`;
-  flight.classList.add("is-active");
+
+  // Estado atual da imagem do prédio (ela flutua suavemente), para o voo começar sem "pulo".
+  const m = new DOMMatrixReadOnly(getComputedStyle($(".building-media")).transform);
+  const s0 = m.a || 1;
+  const t0 = { x: m.e || 0, y: m.f || 0 };
+  const box = image.getBoundingClientRect();
+  const c = { x: box.left + box.width / 2, y: box.top + box.height / 2 };
+  const view = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  const r = hit.getBoundingClientRect();
+  // Janela iluminada do apartamento: lado direito da faixa do andar.
+  const q = { x: r.left + r.width * 0.75, y: r.top + r.height / 2 };
+  // Ponto da imagem que está sob a janela no início.
+  const d = { x: (q.x - c.x - t0.x) / s0, y: (q.y - c.y - t0.y) / s0 };
+  const sMax = 17;
+  const frames = [];
+  const N = 60;
+  for (let i = 0; i <= N; i++) {
+    const t = i / N;
+    const g = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; // acelera e desacelera
+    const scale = s0 * Math.pow(sMax / s0, g);
+    const px = q.x + (view.x - q.x) * g; // a janela vai para o centro da tela
+    const py = q.y + (view.y - q.y) * g;
+    const tx = px - c.x - scale * d.x;
+    const ty = py - c.y - scale * d.y;
+    const blur = t < 0.55 ? 0 : Math.pow((t - 0.55) / 0.45, 2) * 6;
+    const bright = 1 + Math.pow(t, 3) * 0.5;
+    frames.push({ offset: t, transform: `matrix(${scale},0,0,${scale},${tx},${ty})`, filter: `blur(${blur}px) brightness(${bright})` });
+  }
+
+  flight.classList.add("is-active", "is-flying");
   flight.setAttribute("aria-hidden", "false");
-  requestAnimationFrame(() => flight.classList.add("is-flying"));
+  const anims = [
+    image.animate(frames, { duration: D, easing: "linear", fill: "forwards" }),
+    flash.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: 0.62 }, { opacity: 0.92, offset: 0.84 }, { opacity: 0.92, offset: 1 }], { duration: D, fill: "forwards" }),
+    copy.animate([{ opacity: 1, offset: 0 }, { opacity: 1, offset: 0.16 }, { opacity: 0, offset: 0.36 }], { duration: D, fill: "forwards" })
+  ];
+
+  // Já dentro do vidro, o living aparece por baixo da luz.
   window.setTimeout(() => {
     $("#buildingScene").classList.remove("is-active");
     $("#interiorScene").classList.add("is-active");
     $("#roomEyebrow").textContent = `${floors[selectedFloor].name.toUpperCase()} · ${selectedFloor}º ANDAR`;
-    showRoom("living");
-  }, 2500);
+    showRoom("living", { instant: true });
+    if (!prefersReducedMotion()) {
+      $("#livingImage").animate(
+        [{ transform: "scale(2.1)", filter: "blur(8px) brightness(1.8)" }, { transform: "scale(1)", filter: "blur(0) brightness(1)" }],
+        { duration: 2800, easing: "cubic-bezier(.2,.7,.2,1)" }
+      );
+    }
+  }, D * 0.76);
+
   window.setTimeout(() => {
-    flight.classList.remove("is-active", "is-flying");
+    flight.classList.remove("is-active");
     flight.setAttribute("aria-hidden", "true");
-  }, 3200);
+  }, D * 0.82);
+
+  window.setTimeout(() => {
+    anims.forEach((a) => a.cancel());
+    flight.classList.remove("is-flying");
+    isFlying = false;
+  }, D * 0.82 + 1300);
 }
 
-function showRoom(name) {
+function showRoom(name, options = {}) {
   const room = rooms[name];
   const copy = $("#roomCopy");
-  $("#interiorScene").dataset.room = name;
-  $$(".room-image").forEach((image) => image.classList.toggle("is-active", image.dataset.room === name));
+  const interior = $("#interiorScene");
+  const living = $("#livingImage");
+  const previous = interior.dataset.room;
+  const showing = name === "balcony" ? "living" : name; // a varanda é a mesma imagem, com a câmera mais perto
+
+  if (options.instant) living.style.transition = "none";
+  interior.dataset.room = name;
+  $$(".room-image").forEach((image) => image.classList.toggle("is-active", image.dataset.room === showing));
   $$("[data-room-button]").forEach((button) => button.classList.toggle("is-active", button.dataset.roomButton === name));
+  if (options.instant) {
+    void living.offsetWidth;
+    living.style.transition = "";
+  }
+
+  // Leve inclinação e desfoque de movimento, como um drone avançando.
+  const droneMove = (previous === "living" && name === "balcony") || (previous === "balcony" && name === "living");
+  if (droneMove && !options.instant && !prefersReducedMotion()) {
+    const tilt = name === "balcony" ? -0.9 : 0.9;
+    $(".room-images").animate([
+      { transform: "rotate(0deg) translate3d(0,0,0)", filter: "blur(0px)" },
+      { transform: `rotate(${tilt}deg) translate3d(${tilt * 0.9}%, .8%, 0)`, filter: "blur(1.8px)", offset: 0.5 },
+      { transform: "rotate(0deg) translate3d(0,0,0)", filter: "blur(0px)" }
+    ], { duration: 3400, easing: "ease-in-out" });
+  }
+
   copy.classList.add("is-changing");
   window.setTimeout(() => {
     $("#roomTitle").innerHTML = room.title;
@@ -82,6 +165,7 @@ function showRoom(name) {
 }
 
 $("#enterButton").addEventListener("click", startFlight);
+$("#balconyZone").addEventListener("click", () => showRoom("balcony"));
 $("#prevFloor").addEventListener("click", () => selectFloor(selectedFloor - 1));
 $("#nextFloor").addEventListener("click", () => selectFloor(selectedFloor + 1));
 $$('[data-room-button]').forEach((button) => button.addEventListener("click", () => showRoom(button.dataset.roomButton)));

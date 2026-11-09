@@ -67,6 +67,7 @@
     <section class="flight" id="flightScene" aria-hidden="true">
       <div class="flight-image"></div>
       <div class="flight-vignette"></div>
+      <div class="flight-flash" id="flightFlash"></div>
       <div class="flight-copy">
         <span>ENTRANDO NO</span>
         <strong id="flightFloor">24º ANDAR</strong>
@@ -76,10 +77,11 @@
 
     <main class="scene scene-interior" id="interiorScene" aria-label="Tour pelo apartamento">
       <div class="room-images" aria-hidden="true">
-        <div class="room-image is-active" data-room="living"></div>
+        <div class="room-image is-active" data-room="living" id="livingImage">
+          <button class="zone-balcony" id="balconyZone" type="button" tabindex="-1" data-label="Entrar na varanda →"></button>
+        </div>
         <div class="room-image" data-room="suite"></div>
         <div class="room-image" data-room="bath"></div>
-        <div class="room-image" data-room="balcony"></div>
       </div>
       <div class="interior-shade"></div>
       <button class="back-button" id="backButton" type="button">← <span>VOLTAR AO EDIFÍCIO</span></button>
