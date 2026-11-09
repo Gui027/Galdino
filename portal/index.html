@@ -382,6 +382,18 @@
       flow.groups.flatMap(group => group.screens.map(screen => ({ ...screen, mode, group: group.title })))
     );
     const byId = Object.fromEntries(allScreens.map(screen => [screen.id, screen]));
+    const SCREEN_BASE = (() => {
+      const base = new URL(location.href);
+      base.hash = '';
+      base.search = '';
+      const lastPart = base.pathname.split('/').pop();
+      if (!base.pathname.endsWith('/')) {
+        base.pathname = lastPart.includes('.')
+          ? base.pathname.slice(0, base.pathname.lastIndexOf('/') + 1)
+          : `${base.pathname}/`;
+      }
+      return new URL('telas/', base);
+    })();
     let mode = 'public';
     let currentId = 'home-desktop';
     let toastTimer;
@@ -442,7 +454,7 @@
         device.classList.add('is-loading');
         frame.classList.add('is-loading');
         frame.dataset.id = id;
-        frame.src = `telas/${screen.file}`;
+        frame.src = new URL(screen.file, SCREEN_BASE).href;
       }
       history.replaceState(null, '', `#${id}`);
     }
