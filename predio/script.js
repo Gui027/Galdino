@@ -112,7 +112,10 @@ function hallwayExit(room) {
 async function startFlight() {
   if (isFlying || isTravelling) return;
   const video = $("#flightVideo");
-  if (!video || !video.canPlayType("video/mp4") || prefersReducedMotion()) {
+  // O vídeo é sempre o caminho principal (mesmo com "reduzir animações" ligado no sistema).
+  // Se ele realmente não puder tocar, entra direto no apartamento com um fade simples,
+  // sem usar a animação antiga.
+  if (!video) {
     startFallbackFlight();
     return;
   }
@@ -155,16 +158,13 @@ async function startFlight() {
     isFlying = false;
   };
 
+  // Sem vídeo: mostra o prédio parado e faz só um fade para dentro do apartamento.
   const useFallback = () => {
     if (finished) return;
-    finished = true;
     video.onended = null;
     video.onerror = null;
-    flight.classList.remove("is-active", "is-flying", "has-video");
-    flight.setAttribute("aria-hidden", "true");
-    video.removeAttribute("style");
-    isFlying = false;
-    startFallbackFlight();
+    flight.classList.remove("has-video");
+    enterLiving();
   };
 
   video.pause();
@@ -174,11 +174,45 @@ async function startFlight() {
   flight.classList.add("is-active", "is-flying", "has-video");
   flight.setAttribute("aria-hidden", "false");
 
+  // Se o vídeo ainda não carregou, espera um pouco (até 6 s) em vez de desistir na hora.
+  if (video.readyState < 3) {
+    video.load();
+    await new Promise((resolve) => {
+      const done = () => { video.removeEventListener("canplay", done); resolve(); };
+      video.addEventListener("canplay", done);
+      window.setTimeout(done, 6000);
+    });
+  }
+  if (finished) return;
+
   try {
     await video.play();
   } catch (error) {
-    useFallback();
+    // Uma segunda tentativa, já mudo, antes de desistir.
+    try {
+      video.muted = true;
+      await video.play();
+    } catch (secondError) {
+      useFallback();
+    }
   }
+
+  // Vigia: se o vídeo chegar ao fim sem disparar "ended", ou parar de andar por 3 s, a tela não fica presa.
+  let lastTime = -1;
+  let stuckSince = performance.now();
+  const watchdog = window.setInterval(() => {
+    if (finished) { window.clearInterval(watchdog); return; }
+    const now = performance.now();
+    if (video.currentTime !== lastTime) { lastTime = video.currentTime; stuckSince = now; }
+    const nearEnd = video.duration && video.currentTime >= video.duration - 0.6;
+    if (video.ended || (nearEnd && now - stuckSince > 800)) {
+      window.clearInterval(watchdog);
+      enterLiving();
+    } else if (now - stuckSince > 3000) {
+      window.clearInterval(watchdog);
+      video.currentTime < 0.05 ? useFallback() : enterLiving();
+    }
+  }, 300);
 }
 
 async function startFallbackFlight() {
