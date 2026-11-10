@@ -111,6 +111,77 @@ function hallwayExit(room) {
 
 async function startFlight() {
   if (isFlying || isTravelling) return;
+  const video = $("#flightVideo");
+  if (!video || !video.canPlayType("video/mp4") || prefersReducedMotion()) {
+    startFallbackFlight();
+    return;
+  }
+
+  isFlying = true;
+  const flight = $("#flightScene");
+  const bridge = $("#flightBridge");
+  let finished = false;
+
+  const enterLiving = async () => {
+    if (finished) return;
+    finished = true;
+    video.onended = null;
+    video.onerror = null;
+    bridge.style.opacity = "1";
+    bridge.style.transform = "scale(1)";
+    video.style.opacity = "0";
+
+    $("#buildingScene").classList.remove("is-active");
+    $("#interiorScene").classList.add("is-active");
+    $("#roomEyebrow").textContent = `${floors[selectedFloor].name.toUpperCase()} · ${selectedFloor}º ANDAR`;
+    setRoomState("living", true);
+    updateRoomCopy("living");
+
+    await new Promise((resolve) => window.setTimeout(resolve, 220));
+    const exitAnimation = bridge.animate([
+      { opacity: 1, transform: "scale(1)" },
+      { opacity: 1, transform: "scale(1.18)", offset: 0.55 },
+      { opacity: 0, transform: "scale(1.42)" }
+    ], { duration: 1250, easing: "cubic-bezier(.35,.02,.2,1)", fill: "forwards" });
+    await exitAnimation.finished.catch(() => {});
+
+    flight.classList.remove("is-active", "is-flying", "has-video");
+    flight.setAttribute("aria-hidden", "true");
+    exitAnimation.cancel();
+    bridge.removeAttribute("style");
+    video.removeAttribute("style");
+    video.currentTime = 0;
+    isFlying = false;
+  };
+
+  const useFallback = () => {
+    if (finished) return;
+    finished = true;
+    video.onended = null;
+    video.onerror = null;
+    flight.classList.remove("is-active", "is-flying", "has-video");
+    flight.setAttribute("aria-hidden", "true");
+    video.removeAttribute("style");
+    isFlying = false;
+    startFallbackFlight();
+  };
+
+  video.pause();
+  video.currentTime = 0;
+  video.onended = enterLiving;
+  video.onerror = useFallback;
+  flight.classList.add("is-active", "is-flying", "has-video");
+  flight.setAttribute("aria-hidden", "false");
+
+  try {
+    await video.play();
+  } catch (error) {
+    useFallback();
+  }
+}
+
+async function startFallbackFlight() {
+  if (isFlying || isTravelling) return;
   isFlying = true;
 
   const flight = $("#flightScene");

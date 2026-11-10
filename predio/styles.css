@@ -74,10 +74,13 @@ button { border: 0; cursor: pointer; }
 
 .flight { z-index: 80; opacity: 0; visibility: hidden; background: #06101d; transition: opacity .18s linear, visibility 0s linear .18s; }
 .flight.is-active { opacity: 1; visibility: visible; transition: opacity .3s ease, visibility 0s; }
-.flight-image { background: linear-gradient(90deg, rgba(1,8,17,.16), rgba(1,8,17,.04) 55%, rgba(1,8,17,.32)), url("assets/tower.png") center/cover; will-change: transform, opacity; backface-visibility: hidden; }
-.flight-bridge { position: absolute; inset: -3%; opacity: 0; background: url("assets/facade-entry.png") center/cover; will-change: transform, opacity; backface-visibility: hidden; }
-.flight-vignette { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 48%, rgba(2,8,16,.38) 100%); pointer-events: none; }
-.flight-copy { position: absolute; left: 50%; top: 50%; text-align: center; transform: translate(-50%,-50%); text-shadow: 0 2px 25px #000; }
+.flight-video { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; opacity: 0; object-fit: cover; background: #06101d; transition: opacity .18s linear; }
+.flight.has-video .flight-video { opacity: 1; }
+.flight-image { z-index: 1; background: linear-gradient(90deg, rgba(1,8,17,.16), rgba(1,8,17,.04) 55%, rgba(1,8,17,.32)), url("assets/tower.png") center/cover; will-change: transform, opacity; backface-visibility: hidden; }
+.flight-bridge { position: absolute; z-index: 1; inset: -3%; opacity: 0; background: url("assets/facade-entry.png") center/cover; will-change: transform, opacity; backface-visibility: hidden; }
+.flight-vignette { position: absolute; z-index: 3; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 58%, rgba(2,8,16,.22) 100%); pointer-events: none; }
+.flight-copy { position: absolute; z-index: 4; left: 50%; top: 50%; text-align: center; transform: translate(-50%,-50%); text-shadow: 0 2px 25px #000; }
+.flight.has-video .flight-copy { display: none; }
 .flight-copy span { display: block; font-size: 9px; letter-spacing: .35em; }
 .flight-copy strong { display: block; margin: 10px 0 18px; font: 300 38px "Manrope"; }
 .flight-copy i { display: block; width: 0; height: 1px; margin: auto; background: var(--gold); }
