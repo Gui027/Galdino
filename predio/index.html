@@ -66,8 +66,8 @@
 
     <section class="flight" id="flightScene" aria-hidden="true">
       <div class="flight-image"></div>
+      <div class="flight-bridge" id="flightBridge"></div>
       <div class="flight-vignette"></div>
-      <div class="flight-flash" id="flightFlash"></div>
       <div class="flight-copy">
         <span>ENTRANDO NO</span>
         <strong id="flightFloor">24º ANDAR</strong>
@@ -82,6 +82,12 @@
         </div>
         <div class="room-image" data-room="suite"></div>
         <div class="room-image" data-room="bath"></div>
+      </div>
+      <div class="camera-transition" id="cameraTransition" aria-hidden="true">
+        <div class="camera-plane camera-from" id="cameraFrom"></div>
+        <div class="camera-plane camera-hall" id="cameraHall"></div>
+        <div class="camera-plane camera-to" id="cameraTo"></div>
+        <div class="camera-reticle"><span></span></div>
       </div>
       <div class="interior-shade"></div>
       <button class="back-button" id="backButton" type="button">← <span>VOLTAR AO EDIFÍCIO</span></button>

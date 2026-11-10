@@ -16,11 +16,29 @@ const rooms = {
   balcony: { index: "04", title: "Varanda<br><em>oceânica</em>", description: "A transição perfeita entre o conforto da casa e a imensidão azul." }
 };
 
+const assets = {
+  living: "assets/living.png",
+  suite: "assets/suite.png",
+  bath: "assets/bath.png",
+  balcony: "assets/living.png",
+  facade: "assets/facade-entry.png",
+  hallway: "assets/hallway.png"
+};
+
+Object.values(assets).forEach((src) => {
+  const image = new Image();
+  image.src = src;
+});
+
 let selectedFloor = 24;
+let currentRoom = "living";
 let soundEnabled = false;
+let isFlying = false;
+let isTravelling = false;
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 const floorMap = $("#floorMap");
+const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 Object.keys(floors).reverse().forEach((number, index) => {
   const button = document.createElement("button");
@@ -48,130 +66,211 @@ function selectFloor(number) {
   $$(".floor-hit").forEach((item) => item.classList.toggle("is-selected", Number(item.dataset.floor) === selectedFloor));
 }
 
-const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-let isFlying = false;
+function updateRoomCopy(name) {
+  const room = rooms[name];
+  $("#roomTitle").innerHTML = room.title;
+  $("#roomDescription").textContent = room.description;
+  $("#roomIndex").textContent = room.index;
+}
 
-// Voo de drone: aproxima do prédio, mira na janela do andar escolhido e atravessa o vidro.
-function startFlight() {
-  if (isFlying) return;
+function setRoomState(name, instant = false) {
+  const visibleRoom = name === "balcony" ? "living" : name;
+  const images = $$(".room-image");
+  if (instant) images.forEach((image) => { image.style.transition = "none"; });
+  $("#interiorScene").dataset.room = name;
+  images.forEach((image) => image.classList.toggle("is-active", image.dataset.room === visibleRoom));
+  $$('[data-room-button]').forEach((button) => button.classList.toggle("is-active", button.dataset.roomButton === name));
+  if (instant) {
+    void $("#interiorScene").offsetWidth;
+    images.forEach((image) => { image.style.transition = ""; });
+  }
+  currentRoom = name;
+}
+
+function focusTransform(point, scale) {
+  // A compensação cresce junto com o zoom: o ponto escolhido permanece no centro.
+  const dx = (0.5 - point.x) * window.innerWidth * scale;
+  const dy = (0.5 - point.y) * window.innerHeight * scale;
+  return `translate3d(${dx}px, ${dy}px, 0) scale(${scale})`;
+}
+
+function routePoint(from, to) {
+  if (from === "living" || from === "balcony") {
+    if (to === "suite") return { x: 0.60, y: 0.50 };
+    if (to === "bath") return { x: 0.28, y: 0.37 };
+    if (to === "balcony") return { x: 0.88, y: 0.47 };
+  }
+  return { x: 0.5, y: 0.5 };
+}
+
+function hallwayExit(room) {
+  if (room === "suite") return { x: 0.10, y: 0.53 };
+  if (room === "bath") return { x: 0.90, y: 0.52 };
+  return { x: 0.5, y: 0.52 };
+}
+
+async function startFlight() {
+  if (isFlying || isTravelling) return;
   isFlying = true;
 
   const flight = $("#flightScene");
-  const image = $(".flight-image");
-  const flash = $("#flightFlash");
+  const tower = $(".flight-image");
+  const bridge = $("#flightBridge");
   const copy = $(".flight-copy");
   const hit = $(".floor-hit.is-selected");
-  const D = prefersReducedMotion() ? 1400 : 4400;
+  const duration = prefersReducedMotion() ? 1300 : 5200;
 
   $("#flightFloor").textContent = `${selectedFloor}º ANDAR`;
+  tower.getAnimations().forEach((animation) => animation.cancel());
+  bridge.getAnimations().forEach((animation) => animation.cancel());
+  tower.removeAttribute("style");
+  bridge.removeAttribute("style");
 
-  // Estado atual da imagem do prédio (ela flutua suavemente), para o voo começar sem "pulo".
-  const m = new DOMMatrixReadOnly(getComputedStyle($(".building-media")).transform);
-  const s0 = m.a || 1;
-  const t0 = { x: m.e || 0, y: m.f || 0 };
-  const box = image.getBoundingClientRect();
-  const c = { x: box.left + box.width / 2, y: box.top + box.height / 2 };
-  const view = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-  const r = hit.getBoundingClientRect();
-  // Janela iluminada do apartamento: lado direito da faixa do andar.
-  const q = { x: r.left + r.width * 0.75, y: r.top + r.height / 2 };
-  // Ponto da imagem que está sob a janela no início.
-  const d = { x: (q.x - c.x - t0.x) / s0, y: (q.y - c.y - t0.y) / s0 };
-  const sMax = 17;
-  const frames = [];
-  const N = 60;
-  for (let i = 0; i <= N; i++) {
-    const t = i / N;
-    const g = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; // acelera e desacelera
-    const scale = s0 * Math.pow(sMax / s0, g);
-    const px = q.x + (view.x - q.x) * g; // a janela vai para o centro da tela
-    const py = q.y + (view.y - q.y) * g;
-    const tx = px - c.x - scale * d.x;
-    const ty = py - c.y - scale * d.y;
-    const blur = t < 0.55 ? 0 : Math.pow((t - 0.55) / 0.45, 2) * 6;
-    const bright = 1 + Math.pow(t, 3) * 0.5;
-    frames.push({ offset: t, transform: `matrix(${scale},0,0,${scale},${tx},${ty})`, filter: `blur(${blur}px) brightness(${bright})` });
+  const buildingTransform = getComputedStyle($(".building-media")).transform;
+  const matrix = buildingTransform === "none" ? new DOMMatrixReadOnly() : new DOMMatrixReadOnly(buildingTransform);
+  const startScale = matrix.a || 1;
+  const startTranslation = { x: matrix.e || 0, y: matrix.f || 0 };
+  const imageBox = tower.getBoundingClientRect();
+  const imageCenter = { x: imageBox.left + imageBox.width / 2, y: imageBox.top + imageBox.height / 2 };
+  const viewportCenter = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  const floorBox = hit.getBoundingClientRect();
+  const windowPoint = { x: floorBox.left + floorBox.width * 0.74, y: floorBox.top + floorBox.height / 2 };
+  const localPoint = {
+    x: (windowPoint.x - imageCenter.x - startTranslation.x) / startScale,
+    y: (windowPoint.y - imageCenter.y - startTranslation.y) / startScale
+  };
+
+  const towerFrames = [];
+  const frameCount = 90;
+  for (let index = 0; index <= frameCount; index += 1) {
+    const time = index / frameCount;
+    const eased = time < 0.5 ? 2 * time * time : 1 - Math.pow(-2 * time + 2, 2) / 2;
+    const scale = startScale * Math.pow(13 / startScale, eased);
+    const pointX = windowPoint.x + (viewportCenter.x - windowPoint.x) * Math.min(1, eased * 1.45);
+    const pointY = windowPoint.y + (viewportCenter.y - windowPoint.y) * Math.min(1, eased * 1.45);
+    const x = pointX - imageCenter.x - scale * localPoint.x;
+    const y = pointY - imageCenter.y - scale * localPoint.y;
+    towerFrames.push({ offset: time, transform: `matrix(${scale},0,0,${scale},${x},${y})` });
   }
 
   flight.classList.add("is-active", "is-flying");
   flight.setAttribute("aria-hidden", "false");
-  const anims = [
-    image.animate(frames, { duration: D, easing: "linear", fill: "forwards" }),
-    flash.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: 0.62 }, { opacity: 0.92, offset: 0.84 }, { opacity: 0.92, offset: 1 }], { duration: D, fill: "forwards" }),
-    copy.animate([{ opacity: 1, offset: 0 }, { opacity: 1, offset: 0.16 }, { opacity: 0, offset: 0.36 }], { duration: D, fill: "forwards" })
+  const animations = [
+    tower.animate(towerFrames, { duration, easing: "linear", fill: "forwards" }),
+    tower.animate([{ opacity: 1, offset: 0 }, { opacity: 1, offset: 0.56 }, { opacity: 0, offset: 0.72 }, { opacity: 0, offset: 1 }], { duration, fill: "forwards" }),
+    bridge.animate([
+      { opacity: 0, transform: "scale(.94)", offset: 0 },
+      { opacity: 0, transform: "scale(.94)", offset: 0.52 },
+      { opacity: 1, transform: "scale(1.04)", offset: 0.68 },
+      { opacity: 1, transform: "scale(1.82)", offset: 0.90 },
+      { opacity: 0, transform: "scale(2.55)", offset: 1 }
+    ], { duration, easing: "cubic-bezier(.45,.02,.22,1)", fill: "forwards" }),
+    copy.animate([{ opacity: 1, offset: 0 }, { opacity: 1, offset: 0.13 }, { opacity: 0, offset: 0.28 }, { opacity: 0, offset: 1 }], { duration, fill: "forwards" })
   ];
 
-  // Já dentro do vidro, o living aparece por baixo da luz.
   window.setTimeout(() => {
     $("#buildingScene").classList.remove("is-active");
     $("#interiorScene").classList.add("is-active");
     $("#roomEyebrow").textContent = `${floors[selectedFloor].name.toUpperCase()} · ${selectedFloor}º ANDAR`;
-    showRoom("living", { instant: true });
+    setRoomState("living", true);
+    updateRoomCopy("living");
     if (!prefersReducedMotion()) {
       $("#livingImage").animate(
-        [{ transform: "scale(2.1)", filter: "blur(8px) brightness(1.8)" }, { transform: "scale(1)", filter: "blur(0) brightness(1)" }],
-        { duration: 2800, easing: "cubic-bezier(.2,.7,.2,1)" }
+        [{ transform: "scale(1.42)" }, { transform: "scale(1)" }],
+        { duration: duration * 0.23, easing: "cubic-bezier(.18,.72,.2,1)" }
       );
     }
-  }, D * 0.76);
+  }, duration * 0.82);
 
-  window.setTimeout(() => {
-    flight.classList.remove("is-active");
-    flight.setAttribute("aria-hidden", "true");
-  }, D * 0.82);
-
-  window.setTimeout(() => {
-    anims.forEach((a) => a.cancel());
-    flight.classList.remove("is-flying");
-    isFlying = false;
-  }, D * 0.82 + 1300);
+  await Promise.allSettled(animations.map((animation) => animation.finished));
+  flight.classList.remove("is-active", "is-flying");
+  flight.setAttribute("aria-hidden", "true");
+  animations.forEach((animation) => animation.cancel());
+  tower.removeAttribute("style");
+  bridge.removeAttribute("style");
+  isFlying = false;
 }
 
-function showRoom(name, options = {}) {
-  const room = rooms[name];
-  const copy = $("#roomCopy");
+async function travelToRoom(name) {
+  if (name === currentRoom || isTravelling || isFlying) return;
+  isTravelling = true;
   const interior = $("#interiorScene");
-  const living = $("#livingImage");
-  const previous = interior.dataset.room;
-  const showing = name === "balcony" ? "living" : name; // a varanda é a mesma imagem, com a câmera mais perto
 
-  if (options.instant) living.style.transition = "none";
-  interior.dataset.room = name;
-  $$(".room-image").forEach((image) => image.classList.toggle("is-active", image.dataset.room === showing));
-  $$("[data-room-button]").forEach((button) => button.classList.toggle("is-active", button.dataset.roomButton === name));
-  if (options.instant) {
-    void living.offsetWidth;
-    living.style.transition = "";
+  // Sala e varanda compartilham a mesma perspectiva; não há troca de imagem.
+  if ((currentRoom === "living" && name === "balcony") || (currentRoom === "balcony" && name === "living")) {
+    interior.classList.add("is-travelling");
+    setRoomState(name);
+    window.setTimeout(() => updateRoomCopy(name), prefersReducedMotion() ? 100 : 1300);
+    await new Promise((resolve) => window.setTimeout(resolve, prefersReducedMotion() ? 350 : 3400));
+    interior.classList.remove("is-travelling");
+    isTravelling = false;
+    return;
   }
 
-  // Leve inclinação e desfoque de movimento, como um drone avançando.
-  const droneMove = (previous === "living" && name === "balcony") || (previous === "balcony" && name === "living");
-  if (droneMove && !options.instant && !prefersReducedMotion()) {
-    const tilt = name === "balcony" ? -0.9 : 0.9;
-    $(".room-images").animate([
-      { transform: "rotate(0deg) translate3d(0,0,0)", filter: "blur(0px)" },
-      { transform: `rotate(${tilt}deg) translate3d(${tilt * 0.9}%, .8%, 0)`, filter: "blur(1.8px)", offset: 0.5 },
-      { transform: "rotate(0deg) translate3d(0,0,0)", filter: "blur(0px)" }
-    ], { duration: 3400, easing: "ease-in-out" });
-  }
+  const transition = $("#cameraTransition");
+  const fromPlane = $("#cameraFrom");
+  const hallPlane = $("#cameraHall");
+  const toPlane = $("#cameraTo");
+  const fromRoom = currentRoom;
+  const targetVisible = name === "balcony" ? "living" : name;
+  const duration = prefersReducedMotion() ? 750 : 4600;
+  const sourcePoint = routePoint(fromRoom, name);
+  const exitPoint = hallwayExit(name);
+  const sourceStartScale = fromRoom === "balcony" ? 2.25 : 1;
 
-  copy.classList.add("is-changing");
-  window.setTimeout(() => {
-    $("#roomTitle").innerHTML = room.title;
-    $("#roomDescription").textContent = room.description;
-    $("#roomIndex").textContent = room.index;
-    copy.classList.remove("is-changing");
-  }, 220);
+  [fromPlane, hallPlane, toPlane].forEach((plane) => plane.getAnimations().forEach((animation) => animation.cancel()));
+  fromPlane.style.backgroundImage = `url("${assets[fromRoom]}")`;
+  toPlane.style.backgroundImage = `url("${assets[targetVisible]}")`;
+  transition.classList.add("is-active");
+  transition.setAttribute("aria-hidden", "false");
+  interior.classList.add("is-travelling");
+
+  setRoomState(name, true);
+  const animations = [
+    fromPlane.animate([
+      { opacity: 1, transform: `scale(${sourceStartScale})`, offset: 0 },
+      { opacity: 1, transform: focusTransform(sourcePoint, 2.85), offset: 0.38 },
+      { opacity: 0, transform: focusTransform(sourcePoint, 3.2), offset: 0.52 },
+      { opacity: 0, transform: focusTransform(sourcePoint, 3.2), offset: 1 }
+    ], { duration, easing: "linear", fill: "forwards" }),
+    hallPlane.animate([
+      { opacity: 0, transform: "scale(.96)", offset: 0 },
+      { opacity: 0, transform: "scale(.96)", offset: 0.25 },
+      { opacity: 1, transform: "scale(1)", offset: 0.40 },
+      { opacity: 1, transform: focusTransform(exitPoint, 2.55), offset: 0.72 },
+      { opacity: 0, transform: focusTransform(exitPoint, 2.9), offset: 0.84 },
+      { opacity: 0, transform: focusTransform(exitPoint, 2.9), offset: 1 }
+    ], { duration, easing: "linear", fill: "forwards" }),
+    toPlane.animate([
+      { opacity: 0, transform: "scale(1.48)", offset: 0 },
+      { opacity: 0, transform: "scale(1.48)", offset: 0.67 },
+      { opacity: 1, transform: "scale(1.32)", offset: 0.80 },
+      { opacity: 1, transform: name === "balcony" ? "scale(2.25)" : "scale(1)", offset: 1 }
+    ], { duration, easing: "linear", fill: "forwards" })
+  ];
+
+  window.setTimeout(() => updateRoomCopy(name), duration * 0.76);
+  await Promise.allSettled(animations.map((animation) => animation.finished));
+  transition.classList.remove("is-active");
+  transition.setAttribute("aria-hidden", "true");
+  interior.classList.remove("is-travelling");
+  animations.forEach((animation) => animation.cancel());
+  [fromPlane, toPlane].forEach((plane) => {
+    plane.style.backgroundImage = "";
+    plane.removeAttribute("style");
+  });
+  isTravelling = false;
 }
 
 $("#enterButton").addEventListener("click", startFlight);
-$("#balconyZone").addEventListener("click", () => showRoom("balcony"));
+$("#balconyZone").addEventListener("click", () => travelToRoom("balcony"));
 $("#prevFloor").addEventListener("click", () => selectFloor(selectedFloor - 1));
 $("#nextFloor").addEventListener("click", () => selectFloor(selectedFloor + 1));
-$$('[data-room-button]').forEach((button) => button.addEventListener("click", () => showRoom(button.dataset.roomButton)));
-$$('[data-target]').forEach((button) => button.addEventListener("click", () => showRoom(button.dataset.target)));
+$$('[data-room-button]').forEach((button) => button.addEventListener("click", () => travelToRoom(button.dataset.roomButton)));
+$$('[data-target]').forEach((button) => button.addEventListener("click", () => travelToRoom(button.dataset.target)));
 
 $("#backButton").addEventListener("click", () => {
+  if (isFlying || isTravelling) return;
   $("#interiorScene").classList.remove("is-active");
   $("#buildingScene").classList.add("is-active");
 });
