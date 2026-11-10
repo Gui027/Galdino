@@ -28,9 +28,12 @@
     </header>
 
     <main class="scene scene-building is-active" id="buildingScene" aria-label="Seleção de andares">
-      <div class="scene-media building-media"></div>
+      <!-- A luz dos andares fica DENTRO da imagem do prédio: acompanha a foto em qualquer tamanho de tela -->
+      <div class="scene-media building-media">
+        <div class="floor-map" id="floorMap" aria-label="Andares disponíveis"></div>
+        <span class="floor-tag" id="floorTag" aria-hidden="true"></span>
+      </div>
       <div class="grain"></div>
-      <div class="floor-map" id="floorMap" aria-label="Andares disponíveis"></div>
 
       <section class="intro-copy">
         <p class="eyebrow">Viva acima do horizonte</p>

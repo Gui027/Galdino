@@ -13,7 +13,9 @@ const rooms = {
   living: { index: "01", title: "Living<br><em>panorâmico</em>", description: "Amplitude, luz natural e o oceano como parte da decoração." },
   suite: { index: "02", title: "Suíte<br><em>master</em>", description: "Um refúgio silencioso com varanda íntima e horizonte particular." },
   bath: { index: "03", title: "Sala de<br><em>banho</em>", description: "Pedra natural, luz indireta e atmosfera de spa diante do mar." },
-  balcony: { index: "04", title: "Varanda<br><em>oceânica</em>", description: "A transição perfeita entre o conforto da casa e a imensidão azul." }
+  balcony: { index: "04", title: "Varanda<br><em>oceânica</em>", description: "A transição perfeita entre o conforto da casa e a imensidão azul." },
+  // Chegada: o vídeo termina e fica parado na varanda, vista de fora.
+  arrival: { index: "04", title: "Varanda<br><em>oceânica</em>", description: "A transição perfeita entre o conforto da casa e a imensidão azul." }
 };
 
 const assets = {
@@ -40,14 +42,41 @@ const $$ = (selector) => [...document.querySelectorAll(selector)];
 const floorMap = $("#floorMap");
 const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// Geometria da janela de cada andar, medida na própria foto (tower.png, 1672 × 941 px).
+// Cada faixa de vidro é ondulada: x vai de 495 a 665 e as bordas de cima/baixo descem para a direita.
+// Os valores dy são relativos ao topo do andar (y0 + pitch * posição).
+const TOWER_IMG = { w: 1672, h: 941, y0: 52, pitch: 30 };
+const WINDOW_SHAPE = [ // [x, dyTopo, dyBase]
+  [495, 0, 22], [540, 2, 24], [580, 10, 35], [620, 20, 46], [665, 28, 54]
+];
+const WINDOW_SHAPE_TOP = [[495, -1, 22], [540, 0, 23], [590, 4, 30]]; // último andar: só a parte envidraçada
+
+function floorShape(position) {
+  const shape = position === 0 ? WINDOW_SHAPE_TOP : WINDOW_SHAPE;
+  const top = TOWER_IMG.y0 + TOWER_IMG.pitch * position;
+  const xs = shape.map((p) => p[0]);
+  const ys = shape.flatMap((p) => [top + p[1], top + p[2]]);
+  const box = { x0: Math.min(...xs), x1: Math.max(...xs), y0: Math.min(...ys), y1: Math.max(...ys) };
+  const local = ([x, y]) => `${(((x - box.x0) / (box.x1 - box.x0)) * 100).toFixed(2)}% ${(((y - box.y0) / (box.y1 - box.y0)) * 100).toFixed(2)}%`;
+  const upper = shape.map((p) => local([p[0], top + p[1]]));
+  const lower = [...shape].reverse().map((p) => local([p[0], top + p[2]]));
+  return { box, polygon: `polygon(${[...upper, ...lower].join(", ")})` };
+}
+
 Object.keys(floors).reverse().forEach((number, index) => {
   const button = document.createElement("button");
   button.type = "button";
   button.className = "floor-hit";
   button.dataset.floor = number;
   button.dataset.label = `${number}º`;
+  button.dataset.row = index;
   button.setAttribute("aria-label", `Selecionar ${number}º andar`);
-  button.style.top = `${index * 11.7}%`;
+  const { box, polygon } = floorShape(index);
+  button.style.left = `${(box.x0 / TOWER_IMG.w) * 100}%`;
+  button.style.top = `${(box.y0 / TOWER_IMG.h) * 100}%`;
+  button.style.width = `${((box.x1 - box.x0) / TOWER_IMG.w) * 100}%`;
+  button.style.height = `${((box.y1 - box.y0) / TOWER_IMG.h) * 100}%`;
+  button.style.clipPath = polygon;
   button.addEventListener("mouseenter", () => selectFloor(Number(number)));
   button.addEventListener("focus", () => selectFloor(Number(number)));
   button.addEventListener("click", startFlight);
@@ -64,6 +93,16 @@ function selectFloor(number) {
   $("#floorSuites").textContent = data.suites;
   $("#currentFloorLabel").textContent = selectedFloor;
   $$(".floor-hit").forEach((item) => item.classList.toggle("is-selected", Number(item.dataset.floor) === selectedFloor));
+
+  // Etiqueta do andar, ao lado esquerdo do prédio, na altura da janela.
+  const tag = $("#floorTag");
+  const row = $(".floor-hit.is-selected")?.dataset.row;
+  if (tag && row !== undefined) {
+    tag.textContent = `${selectedFloor}º`;
+    tag.style.left = `${(478 / TOWER_IMG.w) * 100}%`;
+    tag.style.top = `${((TOWER_IMG.y0 + TOWER_IMG.pitch * Number(row) + 11) / TOWER_IMG.h) * 100}%`;
+    tag.classList.add("is-visible");
+  }
 }
 
 function updateRoomCopy(name) {
@@ -79,7 +118,8 @@ function setRoomState(name, instant = false) {
   if (instant) images.forEach((image) => { image.style.transition = "none"; });
   $("#interiorScene").dataset.room = name;
   images.forEach((image) => image.classList.toggle("is-active", image.dataset.room === visibleRoom));
-  $$('[data-room-button]').forEach((button) => button.classList.toggle("is-active", button.dataset.roomButton === name));
+  const navName = name === "arrival" ? "balcony" : name;
+  $$('[data-room-button]').forEach((button) => button.classList.toggle("is-active", button.dataset.roomButton === navName));
   if (instant) {
     void $("#interiorScene").offsetWidth;
     images.forEach((image) => { image.style.transition = ""; });
@@ -123,6 +163,24 @@ async function startFlight() {
   isFlying = true;
   const flight = $("#flightScene");
   let finished = false;
+  flight.classList.remove("is-held");
+  video.removeAttribute("style");
+
+  // Fim do vídeo: o último quadro fica parado na tela e o tour aparece por cima dele.
+  const holdArrival = () => {
+    if (finished) return;
+    finished = true;
+    video.onended = null;
+    video.onerror = null;
+    video.pause();
+    $("#buildingScene").classList.remove("is-active");
+    $("#interiorScene").classList.add("is-active");
+    $("#roomEyebrow").textContent = `${floors[selectedFloor].name.toUpperCase()} · ${selectedFloor}º ANDAR`;
+    setRoomState("arrival", true);
+    updateRoomCopy("arrival");
+    flight.classList.add("is-held");
+    isFlying = false;
+  };
 
   const enterLiving = async () => {
     if (finished) return;
@@ -169,7 +227,7 @@ async function startFlight() {
 
   video.pause();
   video.currentTime = 0;
-  video.onended = enterLiving;
+  video.onended = holdArrival;
   video.onerror = useFallback;
   flight.classList.add("is-active", "is-flying", "has-video");
   flight.setAttribute("aria-hidden", "false");
@@ -207,7 +265,7 @@ async function startFlight() {
     const nearEnd = video.duration && video.currentTime >= video.duration - 0.6;
     if (video.ended || (nearEnd && now - stuckSince > 800)) {
       window.clearInterval(watchdog);
-      enterLiving();
+      holdArrival();
     } else if (now - stuckSince > 3000) {
       window.clearInterval(watchdog);
       video.currentTime < 0.05 ? useFallback() : enterLiving();
@@ -297,8 +355,49 @@ async function startFallbackFlight() {
   isFlying = false;
 }
 
+// Sai do último quadro do vídeo para o ambiente escolhido: o vídeo avança e se dissolve
+// enquanto o ambiente aparece por baixo.
+async function leaveArrival(name) {
+  const flight = $("#flightScene");
+  const video = $("#flightVideo");
+  const interior = $("#interiorScene");
+  const visible = name === "balcony" ? "living" : name;
+  const finalScale = name === "balcony" ? 2.25 : 1;
+  const duration = prefersReducedMotion() ? 500 : 2400;
+  const easing = "cubic-bezier(.34,.02,.18,1)";
+
+  isTravelling = true;
+  interior.classList.add("is-travelling");
+  setRoomState(name, true);
+  flight.classList.remove("is-held"); // o vídeo volta para cima, para se dissolver
+  window.setTimeout(() => updateRoomCopy(name), duration * 0.5);
+
+  const roomEntry = $(`.room-image[data-room="${visible}"]`).animate([
+    { transform: `scale(${finalScale * 1.35})` },
+    { transform: `scale(${finalScale})` }
+  ], { duration, easing });
+  const videoExit = video.animate([
+    { opacity: 1, transform: "scale(1)" },
+    { opacity: 1, transform: "scale(1.5)", offset: 0.5 },
+    { opacity: 0, transform: "scale(2.1)" }
+  ], { duration, easing, fill: "forwards" });
+  await Promise.allSettled([roomEntry.finished, videoExit.finished]);
+
+  flight.classList.remove("is-active", "is-flying", "has-video");
+  flight.setAttribute("aria-hidden", "true");
+  videoExit.cancel();
+  video.removeAttribute("style");
+  video.currentTime = 0;
+  interior.classList.remove("is-travelling");
+  isTravelling = false;
+}
+
 async function travelToRoom(name) {
   if (name === currentRoom || isTravelling || isFlying) return;
+  if (currentRoom === "arrival") {
+    await leaveArrival(name);
+    return;
+  }
   isTravelling = true;
   const interior = $("#interiorScene");
 
@@ -377,6 +476,13 @@ $$('[data-target]').forEach((button) => button.addEventListener("click", () => t
 
 $("#backButton").addEventListener("click", () => {
   if (isFlying || isTravelling) return;
+  const flight = $("#flightScene");
+  const video = $("#flightVideo");
+  flight.classList.remove("is-active", "is-flying", "has-video", "is-held");
+  flight.setAttribute("aria-hidden", "true");
+  video.pause();
+  video.removeAttribute("style");
+  video.currentTime = 0;
   $("#interiorScene").classList.remove("is-active");
   $("#buildingScene").classList.add("is-active");
 });

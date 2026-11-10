@@ -17,7 +17,13 @@ button { border: 0; cursor: pointer; }
 .scene.is-active { opacity: 1; visibility: visible; }
 .scene-media, .room-image, .flight-image { position: absolute; inset: -3%; background-position: center; background-size: cover; }
 
-.building-media { background-image: linear-gradient(90deg, rgba(1,8,17,.16), rgba(1,8,17,.04) 55%, rgba(1,8,17,.32)), url("assets/tower.png"); animation: drift 16s ease-in-out infinite alternate; }
+.building-media {
+  inset: auto; left: 50%; top: 50%; translate: -50% -50%;
+  width: max(106vw, calc(106vh * 1.7768)); aspect-ratio: 1672 / 941; /* mesma proporção da foto: tudo preso a ela */
+  background-image: linear-gradient(90deg, rgba(1,8,17,.16), rgba(1,8,17,.04) 55%, rgba(1,8,17,.32)), url("assets/tower.png");
+  background-size: 100% 100%;
+  animation: drift 16s ease-in-out infinite alternate;
+}
 .grain { position: absolute; inset: 0; opacity: .045; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"); }
 @keyframes drift { to { transform: scale(1.025) translate3d(-.4%, -.25%, 0); } }
 
@@ -65,15 +71,25 @@ button { border: 0; cursor: pointer; }
 .floor-nav span { font-size: 9px; color: rgba(255,255,255,.4); letter-spacing: .15em; }
 .floor-nav b { color: #fff; font-weight: 400; }
 
-.floor-map { position: absolute; z-index: 5; left: 25.3%; top: 14%; width: 15.2%; height: 69%; transform: perspective(800px) rotateY(-2deg); }
-.floor-hit { position: absolute; left: 0; width: 100%; height: 4.35%; border: 0; background: transparent; transition: .2s; }
-.floor-hit::before { content: ""; position: absolute; inset: 0 -5%; opacity: 0; background: linear-gradient(90deg, transparent, rgba(255,194,82,.65) 16%, rgba(255,205,105,.72) 70%, transparent); filter: blur(3px); box-shadow: 0 0 18px rgba(255,179,55,.7); transition: opacity .2s; }
-.floor-hit::after { content: attr(data-label); position: absolute; left: -42px; top: 50%; opacity: 0; transform: translateY(-50%) translateX(5px); color: #fff3d1; font-size: 9px; letter-spacing: .12em; transition: .2s; }
-.floor-hit:hover::before, .floor-hit.is-selected::before { opacity: 1; }
-.floor-hit:hover::after, .floor-hit.is-selected::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+.floor-map { position: absolute; inset: 0; }
+/* Cada andar é um recorte (clip-path) que segue a curva exata da janela; a luz nunca passa dela. */
+.floor-hit { position: absolute; padding: 0; border: 0; background: transparent; cursor: pointer; outline: none; }
+.floor-hit::before {
+  content: ""; position: absolute; inset: 0; opacity: 0; mix-blend-mode: screen;
+  background:
+    radial-gradient(ellipse at 50% 55%, rgba(255,222,160,.62), rgba(255,200,120,.4) 62%, rgba(255,185,100,.26)),
+    linear-gradient(90deg, rgba(255,196,110,.14), rgba(255,212,140,.26));
+  transition: opacity .55s ease;
+}
+.floor-hit:hover::before, .floor-hit:focus-visible::before, .floor-hit.is-selected::before { opacity: 1; animation: lightOn .6s ease-out; }
+/* A luz "acende": uma leve oscilação antes de firmar, como uma lâmpada. */
+@keyframes lightOn { 0% { opacity: 0; } 30% { opacity: .85; } 48% { opacity: .45; } 100% { opacity: 1; } }
+.floor-tag { position: absolute; z-index: 2; opacity: 0; transform: translate(-100%, -50%); pointer-events: none; color: #fff3d1; font-size: 10px; letter-spacing: .14em; text-shadow: 0 1px 8px rgba(0,0,0,.7); transition: opacity .3s, top .25s ease; }
+.floor-tag.is-visible { opacity: 1; }
 
 .flight { z-index: 80; opacity: 0; visibility: hidden; background: #06101d; transition: opacity .18s linear, visibility 0s linear .18s; }
 .flight.is-active { opacity: 1; visibility: visible; transition: opacity .3s ease, visibility 0s; }
+.flight.is-held { z-index: 0; }
 .flight-video { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; opacity: 0; object-fit: cover; background: #06101d; transition: opacity .18s linear; }
 .flight.has-video .flight-video { opacity: 1; }
 .flight-image { z-index: 1; background: linear-gradient(90deg, rgba(1,8,17,.16), rgba(1,8,17,.04) 55%, rgba(1,8,17,.32)), url("assets/tower.png") center/cover; will-change: transform, opacity; backface-visibility: hidden; }
@@ -175,7 +191,6 @@ button { border: 0; cursor: pointer; }
   .intro-copy > p:not(.eyebrow) { display: none; }
   .floor-panel { right: 18px; width: 275px; padding: 22px; }
   .floor-heading strong { font-size: 55px; }
-  .floor-map { left: 23%; width: 18%; }
   .room-copy { left: 24px; bottom: 110px; }
   .room-copy h2 { font-size: 42px; }
   .room-nav { right: 20px; bottom: 28px; }
