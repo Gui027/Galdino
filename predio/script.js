@@ -119,7 +119,6 @@ async function startFlight() {
 
   isFlying = true;
   const flight = $("#flightScene");
-  const bridge = $("#flightBridge");
   let finished = false;
 
   const enterLiving = async () => {
@@ -127,28 +126,30 @@ async function startFlight() {
     finished = true;
     video.onended = null;
     video.onerror = null;
-    bridge.style.opacity = "1";
-    bridge.style.transform = "scale(1)";
-    video.style.opacity = "0";
-
     $("#buildingScene").classList.remove("is-active");
     $("#interiorScene").classList.add("is-active");
     $("#roomEyebrow").textContent = `${floors[selectedFloor].name.toUpperCase()} · ${selectedFloor}º ANDAR`;
     setRoomState("living", true);
     updateRoomCopy("living");
 
-    await new Promise((resolve) => window.setTimeout(resolve, 220));
-    const exitAnimation = bridge.animate([
+    // Mantém o último quadro real na tela e continua empurrando a câmera pela
+    // abertura. O living só aparece quando a fachada já ocupa todo o quadro.
+    const livingEntry = $("#livingImage").animate([
+      { transform: "scale(1.22)", opacity: 0.35 },
+      { transform: "scale(1.12)", opacity: 0.35, offset: 0.56 },
+      { transform: "scale(1)", opacity: 1 }
+    ], { duration: 2100, easing: "cubic-bezier(.34,.02,.18,1)", fill: "both" });
+    const exitAnimation = video.animate([
       { opacity: 1, transform: "scale(1)" },
-      { opacity: 1, transform: "scale(1.18)", offset: 0.55 },
-      { opacity: 0, transform: "scale(1.42)" }
-    ], { duration: 1250, easing: "cubic-bezier(.35,.02,.2,1)", fill: "forwards" });
-    await exitAnimation.finished.catch(() => {});
+      { opacity: 1, transform: "scale(1.55)", offset: 0.58 },
+      { opacity: 0, transform: "scale(2.15)" }
+    ], { duration: 2100, easing: "cubic-bezier(.34,.02,.18,1)", fill: "forwards" });
+    await Promise.allSettled([exitAnimation.finished, livingEntry.finished]);
 
     flight.classList.remove("is-active", "is-flying", "has-video");
     flight.setAttribute("aria-hidden", "true");
     exitAnimation.cancel();
-    bridge.removeAttribute("style");
+    livingEntry.cancel();
     video.removeAttribute("style");
     video.currentTime = 0;
     isFlying = false;

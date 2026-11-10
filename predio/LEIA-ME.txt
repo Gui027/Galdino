@@ -6,7 +6,7 @@ O protótipo inclui:
 - luz e informações ao passar o mouse pelos andares 21 a 28;
 - navegação também por teclado (setas, Enter e Esc);
 - voo frontal em três planos até o apartamento (torre, fachada/varanda e living);
-- vídeo real de aproximação `tower-to-balcony.mp4` usado no primeiro trecho, com fallback automático para a animação CSS;
+- vídeo real de aproximação `tower-to-balcony.mp4` suavizado para 30 fps e usado no primeiro trecho, com fallback automático para a animação CSS;
 - câmera nítida, sem blur, flash, rotação ou desvio do ponto selecionado;
 - corredor arquitetônico intermediário nas viagens entre living, suíte e banheiro;
 - quatro pontos do tour: living, suíte, banho e varanda;
